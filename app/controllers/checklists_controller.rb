@@ -13,9 +13,11 @@ class ChecklistsController < ApplicationController
   
   def update
     @checklist = Checklist.find(params[:id])
-    @checklist.update(checklist_params)
-    
-    redirect_to @checklist
+    if @checklist.update(checklist_params)
+      redirect_to @checklist, notice: "Checklist updated successfully"
+    else
+      render :edit
+    end
   end
   
   def new
@@ -25,8 +27,11 @@ class ChecklistsController < ApplicationController
   
   def create 
     @checklist = Checklist.new(checklist_params)
-    @checklist.save()
-    redirect_to @checklist
+    if @checklist.save()
+      redirect_to @checklist, notice: "Checklist created successfully"
+    else
+      render :new
+    end  
   end
   
   def destroy

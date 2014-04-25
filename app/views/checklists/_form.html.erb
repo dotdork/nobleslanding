@@ -1,4 +1,5 @@
 <%= form_for(@checklist) do |f| %>
+  <%= render "shared/errors" %>
   <p>
     <%= f.label(:checklist_name) %><br/>
     <%= f.text_field(:name, autofocus: true) %>

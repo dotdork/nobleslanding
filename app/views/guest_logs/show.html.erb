@@ -3,8 +3,8 @@
 <article>
     <header>
       <h4>Check-in: <%= @guest_log.in_at.to_s(:long) %><br/>
-          Duration: <%= get_duration(@guest_log) %><br/>
-          Rating: <%= @guest_log.rating %></h4>
+      <small>Duration: <%= get_duration(@guest_log) %><br/>
+          Rating: <%= @guest_log.rating %></small</h4>
 		</header>
 	  <p>
 	    &ldquo;<%= @guest_log.log %>&rdquo;

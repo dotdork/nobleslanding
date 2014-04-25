@@ -1,6 +1,10 @@
 NoblesLanding::Application.routes.draw do
 
+  resources :checklist_items
+
   NoblesLanding::Application.routes.draw do
+  resources :checklist_items
+
     root "home#index"
 #    get "guest_logs" => "guest_logs#index"
 #    get "guest_logs/:id" => "guest_logs#show", as: "guest_log"

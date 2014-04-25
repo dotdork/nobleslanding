@@ -20,9 +20,11 @@ class GuestLogsController < ApplicationController
   
   def update
     @guest_log = GuestLog.find(params[:id])
-    @guest_log.update(guest_log_params)
-    
-    redirect_to @guest_log
+    if @guest_log.update(guest_log_params)
+      redirect_to @guest_log, notice: "Guest Log updated successfully"
+    else
+      render :edit
+    end
   end
   
   def new
@@ -30,18 +32,14 @@ class GuestLogsController < ApplicationController
   end
   
   
-  def create
-    # check in must be before check out date
-    # check that dates are not in the future
-#    now_time = Time.now
-#    if params[:guest_log][:in_at] > now_time || params[:guest_log][:out_at] > now_time
-#      "Invalid date provided"
-#      redirect_to new_guest_log_path
-#    end
-    
+  def create  
     @guest_log = GuestLog.new(guest_log_params)
-    @guest_log.save()
-    redirect_to @guest_log
+    if @guest_log.save
+      redirect_to @guest_log, notice: "Guest Log created successfully"
+    else
+      render :new
+    end  
+    
   end
   
   def destroy

@@ -1,4 +1,5 @@
 <%= form_for(@guest_log) do |f| %>
+  <%= render "shared/errors" %>
   <p>
     <%= f.label(:your_name) %><br/>
     <%= f.text_field(:name, autofocus: true) %>
