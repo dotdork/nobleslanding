@@ -1,0 +1,15 @@
+<%= form_for(@checklist) do |f| %>
+  <p>
+    <%= f.label(:checklist_name) %><br/>
+    <%= f.text_field(:name, autofocus: true) %>
+  </p>
+  <p>
+    <%= f.label(:checklist_description) %><br/>
+    <%= f.text_area(:description,cols: 40,rows: 7) %>
+  </p>
+  
+  <br/>
+  <div style="float: left; width: auto; padding-right: 5px">
+    <%= f.submit(class: "btn btn-primary") %>
+  </div>
+<% end %>

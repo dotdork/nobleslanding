@@ -1,0 +1,33 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">Noble's Landing</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="<%= 'active' if params[:action] == 'about' %>"><%= link_to 'About',home_about_path %></li>
+        <li class="dropdown">
+          <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">Guest Logs <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="<%= guest_logs_path %>">All Guest Logs</a></li>
+            <li><a href="<%= new_guest_log_path %>">Create Guest Log</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">Checklists <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="<%= checklists_path %>">All Checklists</a></li>
+            <li><a href="<%= new_checklist_path %>">Create Checklist</a></li>
+          </ul>
+        </li>   
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+<br/>
+<br/>

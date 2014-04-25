@@ -1,0 +1,4 @@
+<h2>Edit <%= @guest_log.name %>'s Stay</h2>
+
+<%= render 'form' %>
+<%= button_to "Cancel", guest_log_path, :method => "get", class: "btn btn-warning" %>

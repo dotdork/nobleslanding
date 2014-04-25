@@ -1,0 +1,20 @@
+<h2><%= @guest_log.name %>'s Stay</h2>
+
+<article>
+    <header>
+      <h4>Check-in: <%= @guest_log.in_at.to_s(:long) %><br/>
+          Duration: <%= get_duration(@guest_log) %><br/>
+          Rating: <%= @guest_log.rating %></h4>
+		</header>
+	  <p>
+	    &ldquo;<%= @guest_log.log %>&rdquo;
+	  </p>
+	  <i> - <%= @guest_log.name %> <br>&nbsp&nbsp on <%= @guest_log.created_at %></i>
+	</article>
+
+<br/>
+<p>
+<%= button_to "Edit", edit_guest_log_path, :method => "get", class: "btn btn-primary" %>
+<%= button_to "Delete", guest_log_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
+</p>
+

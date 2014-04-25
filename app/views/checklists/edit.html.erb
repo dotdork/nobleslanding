@@ -1,0 +1,4 @@
+<h2>Edit <%= @checklist.name %></h2>
+
+<%= render 'form' %>
+<%= button_to "Cancel", checklist_path, :method => "get", class: "btn btn-warning" %>

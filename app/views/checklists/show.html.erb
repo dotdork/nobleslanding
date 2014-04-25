@@ -1,0 +1,12 @@
+<h2><%= @checklist.name %></h2>
+
+<h3>
+  <%= @checklist.description %>
+</h3>
+
+<br/>
+<p>
+<%= button_to "Edit", edit_checklist_path, :method => "get", class: "btn btn-primary" %>
+<%= button_to "Delete", checklist_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
+</p>
+

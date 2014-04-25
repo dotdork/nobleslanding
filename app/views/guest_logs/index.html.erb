@@ -1,0 +1,16 @@
+<h2>Guest Logs <small>(Average Rating: <%= @average %>)</small></h2>
+
+<br/>
+
+<table class="table table-striped table-condensed table-hover table-responsive">
+  <% @guest_logs.each do |log| %>
+      <tr>
+        <td style="width: 150px; valign="top";>
+          <%= link_to("#{log.in_at.to_s(:from)} - #{log.out_at.to_s(:to)}",log) %>
+        </td>
+    	  <td>
+    	    <strong><%= log.name %> says...</strong> <i>&ldquo;<%= log.log %>&rdquo;</i>
+    	  </td>
+  	  </tr>
+  <% end %>
+</table>
