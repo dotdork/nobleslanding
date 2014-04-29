@@ -1,23 +1,23 @@
 <%= form_for(@guest_log) do |f| %>
   <%= render "shared/errors", error_item: @guest_log %>
   <p>
-    <%= f.label(:your_name) %><br/>
+    <%= f.label(:name, "Your Name") %><br/>
     <%= f.text_field(:name, autofocus: true) %>
   </p>
   <p>
-    <%= f.label(:about_your_stay) %><br/>
+    <%= f.label(:log, "About Your Stay") %><br/>
     <%= f.text_area(:log,cols: 40,rows: 7) %>
   </p>
   <p>
-    <%= f.label(:check_in_date) %><br/>
+    <%= f.label(:in_at, "Check In Date") %><br/>
     <%= f.date_select(:in_at) %>
   </p>
   <p>
-    <%= f.label(:check_out_date) %><br/>
+    <%= f.label(:out_at, "Check Out Date") %><br/>
     <%= f.date_select(:out_at) %>
   </p>
   <p>
-    <%= f.label(:rate_your_stay) %><br/>
+    <%= f.label(:rating, "Rate Your Stay") %><br/>
     <%= f.select(:rating,1..10) %>
   </p>
 

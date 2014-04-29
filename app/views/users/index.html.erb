@@ -1,0 +1,16 @@
+<h2>Users for Noble's Landing</h2>
+
+<br/>
+
+<table class="table table-striped table-condensed table-hover table-responsive">
+  <% @users.each do |user| %>
+      <tr>
+        <td style="width: 150px; valign="top";>
+          <%= link_to(user.name,user) %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+      </tr>
+  <% end %>
+</table>

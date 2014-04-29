@@ -1,0 +1,16 @@
+<h2><%= @user.name %>'s Account</h2>
+
+<p>
+Name: <%= @user.name %>
+</p>
+
+<p>
+email: <%= @user.email %>
+</p>
+
+<br/>
+<p>
+<%= button_to "Edit Account", edit_user_path, :method => "get", class: "btn btn-primary" %>
+<%= button_to "Delete Account", user_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
+</p>
+

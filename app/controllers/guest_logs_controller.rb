@@ -45,7 +45,7 @@ class GuestLogsController < ApplicationController
   def destroy
     @guest_log = GuestLog.find(params[:id])
     @guest_log.destroy
-    redirect_to guest_logs_path
+    redirect_to guest_logs_path, notice: "Guest Log deleted successfully"
   end
   
 private 

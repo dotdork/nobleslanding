@@ -1,11 +1,11 @@
 <%= form_for([@checklist, @checklist_item]) do |f| %>
   <%= render "shared/errors", error_item: @checklist_item %>
   <p>
-    <%= f.label(:checklist_item_name) %><br/>
+    <%= f.label(:name, "Checklist Item Name") %><br/>
     <%= f.text_field(:name, autofocus: true) %>
   </p>
   <p>
-    <%= f.label(:checklist_item_description) %><br/>
+    <%= f.label(:description, "Checklist Item Details") %><br/>
     <%= f.text_area(:description,cols: 40,rows: 3) %>
   </p>
   

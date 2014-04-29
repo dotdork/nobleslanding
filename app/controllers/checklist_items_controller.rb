@@ -24,7 +24,7 @@ class ChecklistItemsController < ApplicationController
     @checklist = Checklist.find(params[:checklist_id])
     @checklist.checklist_items.destroy(params[:id])
     ChecklistItem.resequence
-    redirect_to edit_checklist_path(@checklist)
+    redirect_to edit_checklist_path(@checklist), notice: "Checklist Item deleted successfully"
   end
    
   def moveup

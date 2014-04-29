@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429155401) do
+ActiveRecord::Schema.define(version: 20140429194555) do
 
   create_table "checklist_items", force: true do |t|
     t.string   "name"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20140429155401) do
     t.date     "in_at"
     t.date     "out_at"
     t.integer  "rating",                 default: 10
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

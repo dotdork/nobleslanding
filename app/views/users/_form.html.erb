@@ -1,0 +1,23 @@
+<%= form_for(@user) do |f| %>
+  <%= render "shared/errors", error_item: @user %>
+  <p>
+    <%= f.label(:name, "Your Name") %><br/>
+    <%= f.text_field(:name, autofocus: true) %>
+  </p>
+  <p>
+    <%= f.label(:email) %><br/>
+    <%= f.email_field(:email,cols: 40) %>
+  </p>
+  <p>
+    <%= f.label(:password) %><br/>
+    <%= f.password_field(:password,cols: 40) %>
+  </p>
+  <p>
+    <%= f.label(:password_confirmation, "Password Confirmation") %><br/>
+    <%= f.password_field(:password_confirmation,cols: 40) %>
+  </p>
+
+  <div style="float: left; width: auto; padding-right: 5px">
+    <%= f.submit(class: "btn btn-primary") %>
+  </div>
+<% end %>

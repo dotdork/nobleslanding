@@ -39,7 +39,7 @@ class ChecklistsController < ApplicationController
   def destroy
     @checklist = Checklist.find(params[:id])
     @checklist.destroy
-    redirect_to checklists_path
+    redirect_to checklists_path, notice: "Checklist deleted successfully"
   end
   
 private 

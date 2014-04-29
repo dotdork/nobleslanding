@@ -26,6 +26,11 @@
         <strong><%= flash[:notice] %></strong>
       </div>
     <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <strong><%= flash[:alert] %></strong>
+    </div>
+  <% end %>
     <%= yield %>
   </div>
 </div><!-- /.container -->
