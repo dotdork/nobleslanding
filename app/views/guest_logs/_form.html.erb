@@ -1,5 +1,5 @@
 <%= form_for(@guest_log) do |f| %>
-  <%= render "shared/errors" %>
+  <%= render "shared/errors", error_item: @guest_log %>
   <p>
     <%= f.label(:your_name) %><br/>
     <%= f.text_field(:name, autofocus: true) %>
@@ -20,8 +20,7 @@
     <%= f.label(:rate_your_stay) %><br/>
     <%= f.select(:rating,1..10) %>
   </p>
-  
-  <br/>
+
   <div style="float: left; width: auto; padding-right: 5px">
     <%= f.submit(class: "btn btn-primary") %>
   </div>

@@ -4,9 +4,18 @@
   <%= @checklist.description %>
 </h3>
 
+<% @items.each do |item| %>
+  <div class="input-group">
+  <span class="input-group-addon">
+    <input type="checkbox">
+  </span>
+  <input type="text" class="form-control" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
+    </div><!-- /input-group -->
+<% end %>
+
 <br/>
 <p>
-<%= button_to "Edit", edit_checklist_path, :method => "get", class: "btn btn-primary" %>
+<%= button_to "Edit List", edit_checklist_path, :method => "get", class: "btn btn-primary" %>
 <%= button_to "Delete", checklist_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
 </p>
 

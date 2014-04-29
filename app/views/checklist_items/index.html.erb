@@ -1,0 +1,10 @@
+
+
+<% @items.each do |item| %>
+  <div class="input-group">
+  <span class="input-group-addon">
+    <input type="checkbox">
+  </span>
+  <input type="text" class="form-control" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
+    </div><!-- /input-group -->
+<% end %>

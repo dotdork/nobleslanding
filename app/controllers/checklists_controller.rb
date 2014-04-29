@@ -5,10 +5,12 @@ class ChecklistsController < ApplicationController
   
   def show
     @checklist = Checklist.find(params[:id])
+    @items = @checklist.checklist_items.order(:seq)
   end
   
   def edit
     @checklist = Checklist.find(params[:id])
+    @items = @checklist.checklist_items.order(:seq)
   end
   
   def update

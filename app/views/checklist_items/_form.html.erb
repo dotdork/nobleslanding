@@ -1,13 +1,15 @@
-<%= form_for(@checklist) do |f| %>
-  <%= render "shared/errors", error_item: @checklist %>
+<%= form_for([@checklist, @checklist_item]) do |f| %>
+  <%= render "shared/errors", error_item: @checklist_item %>
   <p>
-    <%= f.label(:checklist_name) %><br/>
+    <%= f.label(:checklist_item_name) %><br/>
     <%= f.text_field(:name, autofocus: true) %>
   </p>
   <p>
-    <%= f.label(:checklist_description) %><br/>
+    <%= f.label(:checklist_item_description) %><br/>
     <%= f.text_area(:description,cols: 40,rows: 3) %>
   </p>
+  
+  <br/>
   <div style="float: left; width: auto; padding-right: 5px">
     <%= f.submit(class: "btn btn-primary") %>
   </div>

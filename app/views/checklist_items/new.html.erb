@@ -1,0 +1,8 @@
+<h2>New Checklist Item for <%= @checklist.name.capitalize %></h2>
+
+<p>
+Add a new item to the end of the checklist
+</p>
+
+<%= render 'form' %>
+<%= button_to "Cancel", edit_checklist_path(@checklist), :method => "get", class: "btn btn-warning" %>

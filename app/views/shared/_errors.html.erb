@@ -1,18 +1,9 @@
-<% 
-case params[:controller]
-when 'guest_logs'
-  @error_item = @guest_log
-when 'checklists'
-  @error_item = @checklist
-end 
-%>
-
-<% if @error_item.errors.any? %>
+<% if error_item.errors.any? %>
 <div class="alert alert-danger">
-      <strong>Oops! The <%= @error_item.class.name.titleize.downcase %> could not be saved. 
-      Please correct the following <%= pluralize(@error_item.errors.count, "error") %>:</strong>
+      <strong>Oops! The <%= error_item.class.name.titleize.downcase %> could not be saved. 
+      Please correct the following <%= pluralize(error_item.errors.count, "error") %>:</strong>
   <ul>
-    <% @error_item.errors.full_messages.each do |message| %>
+    <% error_item.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
