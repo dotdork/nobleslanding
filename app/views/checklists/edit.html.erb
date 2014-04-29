@@ -3,7 +3,7 @@
 <%= render 'form' %>
 <%= button_to "Done", checklist_path, :method => "get", class: "btn btn-warning" %>
 
-
+<!-- Checklist Items -->
 <h2>Edit <%= @checklist.name %> List Items</h2>
 <p>
 <% @items.each do |item| %>
