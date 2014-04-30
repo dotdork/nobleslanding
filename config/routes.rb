@@ -3,6 +3,7 @@ NoblesLanding::Application.routes.draw do
   root "home#index"
   get "about" => "home#about"
   get "history" => "home#history"
+  get "bolivar" => "home#bolivar"
 
   resources :users
   get "signup" => "users#new"

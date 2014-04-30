@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
   before_action :require_signin
-  before_action :require_correct_user, only: [:edit, :update, :destroy]
+  before_action :require_correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :require_admin, only: [:index]
     
   def index
-    @users = User.all
+    @users = User.order(:name)
   end
 
   def show
@@ -30,9 +31,16 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    if session[:user_id] && User.find(session[:user_id]) == @user
+      destroy_session = true
+    end
+    
     @user.destroy
-    # prolly need to check that current session matches current user
-    session[:user_id] = nil
+    
+    if destroy_session
+      session[:user_id] = nil
+    end
+    
     redirect_to guest_logs_path, notice:  "User was deleted"
   end
 

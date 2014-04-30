@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   private
   
     def require_signin
-      session[:intended_url] = request.url
+      session[:intended_url] = nil
       unless current_user
+        session[:intended_url] = request.url
         redirect_to new_session_url, alert: "Please sign in first!"
       end
     end
@@ -17,10 +18,15 @@ class ApplicationController < ActionController::Base
     end
     helper_method :current_user
     
+    def current_checklists
+      Checklist.order(:name)
+    end
+    helper_method :current_checklists
+    
     def require_correct_user
-      @user = User.find(params[:id])
-      unless current_user?(@user)
-        redirect_to root_path
+      # also allow admin
+      unless  current_user_admin? || current_user?(User.find(params[:id]))
+        redirect_to root_path, alert: "Unauthorized access!"
       end
     end
     

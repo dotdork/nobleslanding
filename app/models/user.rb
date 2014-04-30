@@ -8,7 +8,14 @@ class User < ActiveRecord::Base
   
   def self.authenticate(email, password)
     user = User.find_by(email: email)
-    return user && user.authenticate(password)
+    user && user.authenticate(password)
   end 
 
+  def admin_s
+    if admin
+      "Admin"
+    else
+      "Standard"
+    end
+  end
 end

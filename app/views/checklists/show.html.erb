@@ -4,18 +4,30 @@
   <%= @checklist.description %>
 </h3>
 
+  
+<% bg_colors = [ "#FFFFFF","#F0F0F0" ] %>
+<% index = 0 %>
+
 <% @items.each do |item| %>
   <div class="input-group">
   <span class="input-group-addon">
     <input type="checkbox">
   </span>
-  <input type="text" class="form-control" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
+  <input type="text" class="form-control" style="background-color: <%= bg_colors[index] %>" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
     </div><!-- /input-group -->
+    
+  <% if index == 0
+    index =1
+  else
+    index =0
+  end %>
+  
 <% end %>
 
 <br/>
-<p>
-<%= button_to "Edit List", edit_checklist_path, :method => "get", class: "btn btn-primary" %>
-<%= button_to "Delete", checklist_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
-</p>
-
+<% if current_user_admin? %>
+  <p>
+  <%= button_to "Edit List", edit_checklist_path, :method => "get", class: "btn btn-primary" %>
+  <%= button_to "Delete", checklist_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
+  </p>
+<% end %>
