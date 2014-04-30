@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     # prolly need to check that current session matches current user
-    session[params[:id]] = nil
+    session[:user_id] = nil
     redirect_to guest_logs_path, notice:  "User was deleted"
   end
 
