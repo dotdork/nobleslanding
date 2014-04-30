@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140430024606) do
+ActiveRecord::Schema.define(version: 20140430190128) do
 
   create_table "checklist_items", force: true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140430024606) do
     t.date     "in_at"
     t.date     "out_at"
     t.integer  "rating",                 default: 10
+    t.string   "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140430024606) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",           default: false
+    t.string   "relation"
   end
 
 end

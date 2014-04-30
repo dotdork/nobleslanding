@@ -9,11 +9,18 @@
 	  <p>
 	    &ldquo;<%= @guest_log.log %>&rdquo;
 	  </p>
-	  <i> - <%= @guest_log.name %> <br>&nbsp&nbsp on <%= @guest_log.created_at %></i>
+	  <i> - 
+	    <% if @guest_log.user %>
+	      <%= @guest_log.user.name %>
+	    <% else %> 
+	      <%= @guest_log.name %>
+	    <% end %>
+	    <br>&nbsp&nbsp on <%= @guest_log.created_at %>
+	  </i>
 	</article>
 
 <br/>
-<% if current_user_admin? %>
+<% if current_user_admin? || current_user == @guest_log.user %>
   <p>
   <%= button_to "Edit", edit_guest_log_path, :method => "get", class: "btn btn-primary" %>
   <%= button_to "Delete", guest_log_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>

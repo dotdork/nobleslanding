@@ -6,6 +6,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th> 
+    <th>Relation</th>
     <th>Privilege</th>
   </tr>
   <% @users.each do |user| %>
@@ -14,7 +15,10 @@
           <%= link_to(user.name,user) %>
         </td>
         <td>
-          <%= user.email %>
+          <%= mail_to user.email %>
+        </td>
+        <td>
+          <%= user.relation || "Unknown" %>
         </td>
         <td>
           <%= user.admin_s %>

@@ -18,8 +18,17 @@
   </p>
   <% if current_user_admin? %>
     <p>
-      <%= f.label(:admin, "Admin Privileges?") %> <br/>
+      <%= f.label(:relation, "Relation?") %>
+      <%= f.select(:relation,User::RELATIONS_ADMIN, prompt: "Pick one" ) %>
+    </p>
+    <p>
+      <%= f.label(:admin, "Admin Privileges?") %>
       <%= f.check_box(:admin) %>
+    </p>
+  <% else %>
+    <p>
+      <%= f.label(:relation, "Relation?") %>
+      <%= f.select(:relation,User::RELATIONS, prompt: "Pick one" ) %>
     </p>
   <% end %>
   

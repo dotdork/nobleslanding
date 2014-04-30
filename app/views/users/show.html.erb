@@ -2,8 +2,9 @@
 
 <p>
 Name: <%= @user.name %><br/>
-Email: <%= @user.email %><br/>
-Privilege: <%= @user.admin_s %>
+Email: <%= mail_to @user.email %><br/>
+Privilege: <%= @user.admin_s %><br/>
+Relation:  <%= @user.relation || "Unknown" %> 
 
 </p>
 

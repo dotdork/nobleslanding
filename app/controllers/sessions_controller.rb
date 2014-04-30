@@ -6,8 +6,13 @@ class SessionsController < ApplicationController
   def create
     # authenticate with database    
     if user = User.authenticate(params[:email],params[:password])
-      session[:user_id] = user.id
-      redirect_to(session[:intended_url] || root_path, notice: "Welcome back, #{user.name}!")
+      if !user.disabled?
+        session[:user_id] = user.id
+        redirect_to(session[:intended_url] || root_path, notice: "Welcome back, #{user.name}!")
+      else
+        flash.now[:alert] = "User Disabled!  Please contact administrator to resolve"
+        render :new       
+      end
     else
       flash.now[:alert] = "Invalid email or password combination!"
       render :new
@@ -17,7 +22,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:intended_url] = nil
-    redirect_to root_path, notice: "Thanks, go enjoy the beach!"
+    redirect_to root_path, notice: "Thanks, now go enjoy the beach!"
   end
   
   

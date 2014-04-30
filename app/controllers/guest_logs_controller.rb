@@ -1,6 +1,5 @@
 class GuestLogsController < ApplicationController
   before_action :require_signin, except: [:index, :show]
-  before_action :require_admin, except: [:index, :show, :new, :create]
 
   def index
     @guest_logs = GuestLog.all_desc
@@ -8,7 +7,11 @@ class GuestLogsController < ApplicationController
     # calculate average rating
     @average = 0
     @guest_logs.each { |log| @average += log.rating }
-    @average = @average / @guest_logs.size
+    if @guest_logs.size == 0
+      @average = "n/a"
+    else
+      @average = @average / @guest_logs.size
+    end
     
   end
   
@@ -18,10 +21,12 @@ class GuestLogsController < ApplicationController
   
   def edit
     @guest_log = GuestLog.find(params[:id])
+    require_same_name(@guest_log.user)
   end
   
   def update
     @guest_log = GuestLog.find(params[:id])
+    require_same_name(@guest_log.user)
     if @guest_log.update(guest_log_params)
       redirect_to @guest_log, notice: "Guest Log updated successfully"
     else
@@ -36,6 +41,7 @@ class GuestLogsController < ApplicationController
   
   def create  
     @guest_log = GuestLog.new(guest_log_params)
+    @guest_log.user = current_user
     if @guest_log.save
       redirect_to @guest_log, notice: "Guest Log created successfully"
     else
@@ -54,6 +60,12 @@ private
   def guest_log_params
     params.require(:guest_log).
       permit(:name, :log, :in_at, :out_at, :rating)
+  end
+  
+  def require_same_name(user)
+    unless  current_user == user 
+      redirect_to root_path, alert: "Unauthorized access!"
+    end
   end
 
 

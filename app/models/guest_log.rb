@@ -1,4 +1,6 @@
 class GuestLog < ActiveRecord::Base
+  belongs_to :user
+  
   validates :name, :log, presence: true
   validates :in_at, past: true
   validates :rating, inclusion: { in: 1..10 }

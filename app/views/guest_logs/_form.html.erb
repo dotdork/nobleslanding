@@ -2,11 +2,11 @@
   <%= render "shared/errors", error_item: @guest_log %>
   <p>
     <%= f.label(:name, "Your Name") %><br/>
-    <%= f.text_field(:name, autofocus: true) %>
+  <%= f.text_field(:name, { value: current_user.name }) %>
   </p>
   <p>
     <%= f.label(:log, "About Your Stay") %><br/>
-    <%= f.text_area(:log,cols: 40,rows: 7) %>
+    <%= f.text_area(:log,cols: 40,rows: 7, autofocus: true) %>
   </p>
   <p>
     <%= f.label(:in_at, "Check In Date") %><br/>
