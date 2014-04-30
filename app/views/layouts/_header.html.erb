@@ -11,28 +11,52 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:action] == 'about' %>"><%= link_to 'About',about_path %></li>
+        <!---------------------
+            ABOUT DROPDOWN
+        ----------------------->
+        <li class="dropdown">
+          <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'History',history_path %></li>
+            <li><%= link_to 'Site Info',about_path %></li>
+          </ul>
+        </li>
+            
+        <!---------------------
+            GUEST LOGS DROPDOWN
+        ----------------------->
         <li class="dropdown">
           <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">Guest Logs<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="<%= guest_logs_path %>">All Guest Logs</a></li>
-            <li><a href="<%= new_guest_log_path %>">Create Guest Log</a></li>
+            <li><a href="<%= new_guest_log_path %>">New Guest Log</a></li>
           </ul>
         </li>
+        <!---------------------
+            CHECKLISTS DROPDOWN
+        ----------------------->
         <li class="dropdown">
           <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">Checklists<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="<%= checklists_path %>">All Checklists</a></li>
-            <li><a href="<%= new_checklist_path %>">Create Checklist</a></li>
-          </ul>
-        </li>   
-        <li class="dropdown">
-          <a href="<%= users_path %>" class="dropdown-toggle" data-toggle="dropdown">Accounts<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="<%= users_path %>">All Accounts</a></li>
-            <li><a href="<%= signup_path %>">Create Account</a></li>
           </ul>
         </li>
+        <!---------------------
+            ADMIN DROPDOWN
+        ----------------------->
+        <% if current_user_admin? %>
+          <li class="dropdown">
+            <a href="<%= users_path %>" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="<%= users_path %>">All Accounts</a></li>
+              <li><a href="<%= signup_path %>">New Account</a></li>
+              <li><a href="<%= new_checklist_path %>">New Checklist</a></li>
+            </ul>
+          </li>
+        <% end %>
+        <!---------------------
+            USER DROPDOWN
+        ----------------------->
         <% if current_user %>
           <li class="dropdown">
             <a href="<%= current_user %>" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>

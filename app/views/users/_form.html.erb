@@ -16,7 +16,13 @@
     <%= f.label(:password_confirmation, "Password Confirmation") %><br/>
     <%= f.password_field(:password_confirmation,cols: 40) %>
   </p>
-
+  <% if current_user_admin? %>
+    <p>
+      <%= f.label(:admin, "Admin Privileges?") %> <br/>
+      <%= f.check_box(:admin) %>
+    </p>
+  <% end %>
+  
   <div style="float: left; width: auto; padding-right: 5px">
     <%= f.submit(class: "btn btn-primary") %>
   </div>

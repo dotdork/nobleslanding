@@ -1,5 +1,7 @@
 class GuestLogsController < ApplicationController
-  
+  before_action :require_signin, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show, :new, :create]
+
   def index
     @guest_logs = GuestLog.all_desc
     

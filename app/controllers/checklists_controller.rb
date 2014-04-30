@@ -1,4 +1,8 @@
 class ChecklistsController < ApplicationController
+  
+  before_action :require_signin, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
+    
   def index
     @checklists = Checklist.order(:name)
   end

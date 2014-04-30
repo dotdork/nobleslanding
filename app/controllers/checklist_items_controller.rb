@@ -1,5 +1,7 @@
 class ChecklistItemsController < ApplicationController
-  
+  before_action :require_signin, except: [:index]
+  before_action :require_admin, except: [:index]
+    
   def index
     @checklist = Checklist.find(params[:event_id])
     @items = @checklist.checklist_items
