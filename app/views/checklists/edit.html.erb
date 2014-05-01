@@ -17,7 +17,10 @@
         <% end %>
       </td>
       <td>
-        <% item_value = "<strong>#{item.name.capitalize}</strong> - #{item.description.capitalize}" %>
+        <% item_value = "<strong>#{item.name}</strong>" %>
+        <% if !item.description.blank? %>
+          <% item_value += ": #{item.description}" %>   
+        <% end %>
         <%= item_value.html_safe %>
       </td>
       <td>

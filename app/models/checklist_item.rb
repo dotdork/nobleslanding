@@ -1,5 +1,5 @@
 class ChecklistItem < ActiveRecord::Base
-  validates :name, :description, presence: true
+  validates :name, presence: true
   validates :seq, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   
   belongs_to :checklist
