@@ -19,6 +19,7 @@ class ChecklistsController < ApplicationController
   
   def update
     @checklist = Checklist.find(params[:id])
+    @items = @checklist.checklist_items.order(:seq)
     if @checklist.update(checklist_params)
       redirect_to @checklist, notice: "Checklist updated successfully"
     else

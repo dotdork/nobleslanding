@@ -4,25 +4,20 @@
   <%= @checklist.description %>
 </h3>
 
-  
-<% bg_colors = [ "#F0F0F0","#FFFFFF" ] %>
-<% index = 0 %>
-
+<table class="table table-striped table-condensed table-hover table-responsive" style="width: 80%">
 <% @items.each do |item| %>
-  <div class="input-group">
-  <span class="input-group-addon">
-    <input type="checkbox">
-  </span>
-  <input type="text" class="form-control" style="background-color: <%= bg_colors[index] %>" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
-    </div><!-- /input-group -->
-    
-  <% if index == 0
-    index =1
-  else
-    index =0
-  end %>
-  
+    <tr>
+      <td style="width: 25px;">
+          <input type="checkbox">
+      </td>
+      <td>
+        <% item_value = "<strong>#{item.name.capitalize}</strong> - #{item.description.capitalize}" %>
+        <%= item_value.html_safe %>
+      </td>
+    </tr>
 <% end %>
+</table>
+        
 
 <br/>
 <% if current_user_admin? %>

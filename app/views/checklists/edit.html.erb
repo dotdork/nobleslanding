@@ -5,26 +5,28 @@
 
 <!-- Checklist Items -->
 <h2>Edit <%= @checklist.name %> List Items</h2>
-<p>
+<table class="table table-striped table-condensed table-hover table-responsive" style="width: 80%">
 <% @items.each do |item| %>
-  <div class="input-group">
-    <span class="input-group-addon">
-      <input type="checkbox">
-    </span>
-    <input type="text" class="form-control" readonly="true" value="<%= "#{item.name.capitalize} - #{item.description.capitalize}" %>">
-      
-    <% if item != @items.first %>
-      <%= button_to "&#8593;".html_safe, checklist_moveup_checklist_item_path_path(@checklist,item), :method => "get", class: "btn btn-xs btn-primary", style: "padding-left: 10px; padding-right: 10px" %>
-    <% end %>
-    <% if item != @items.last %>
-      <%= button_to "&#8595".html_safe, checklist_movedown_checklist_item_path_path(@checklist,item), :method => "get",class: "btn btn-xs btn-info", style: "padding-left: 10px; padding-right: 10px" %>
-    <% end %>
-    <%= button_to "Edit", edit_checklist_checklist_item_path(@checklist,item), :method => "get", class: "btn btn-xs btn-success" %>
-    <%= button_to "Delete", checklist_checklist_item_path(@checklist,item), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
-
-  </div><!-- /input-group -->
+    <tr>
+      <td style="width: 70px">
+        <% if item != @items.first %>
+          <%= button_to "&#8593;".html_safe, checklist_moveup_checklist_item_path_path(@checklist,item), :method => "get", class: "btn btn-xs btn-primary", style: "padding-left: 10px; padding-right: 10px" %>
+        <% end %>
+        <% if item != @items.last %>
+          <%= button_to "&#8595".html_safe, checklist_movedown_checklist_item_path_path(@checklist,item), :method => "get",class: "btn btn-xs btn-info", style: "padding-left: 10px; padding-right: 10px" %>
+        <% end %>
+      </td>
+      <td>
+        <% item_value = "<strong>#{item.name.capitalize}</strong> - #{item.description.capitalize}" %>
+        <%= item_value.html_safe %>
+      </td>
+      <td>
+        <%= button_to "Edit", edit_checklist_checklist_item_path(@checklist,item), :method => "get", class: "btn btn-xs btn-success" %>
+        <%= button_to "Delete", checklist_checklist_item_path(@checklist,item), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+      </td>
+    </tr>
 <% end %>
-</p>
+</table>
 
 <p>
   <%= button_to "Add Item", new_checklist_checklist_item_path(@checklist), :method => "get", class: "btn btn-primary" %>
