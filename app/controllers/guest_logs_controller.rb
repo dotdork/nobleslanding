@@ -2,7 +2,7 @@ class GuestLogsController < ApplicationController
   before_action :require_signin, except: [:index, :show]
 
   def index
-    @guest_logs = GuestLog.all_desc
+    @guest_logs = GuestLog.all_desc.page(params[:page])
     
     # calculate average rating
     @average = 0

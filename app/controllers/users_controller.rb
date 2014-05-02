@@ -41,7 +41,11 @@ class UsersController < ApplicationController
       session[:user_id] = nil
     end
     
-    redirect_to guest_logs_path, notice:  "User was deleted"
+    if current_user_admin?
+      redirect_to users_path, notice:  "User was deleted"
+    else
+      redirect_to root_path, notice:  "User was deleted"
+    end
   end
 
   def update

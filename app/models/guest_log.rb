@@ -7,6 +7,8 @@ class GuestLog < ActiveRecord::Base
   
   validate :validate_in_before_out
 
+  self.per_page = 20
+  
   def self.all_desc
     return GuestLog.order('in_at DESC')
   end
