@@ -50,7 +50,7 @@ class ChecklistsController < ApplicationController
 private 
   def checklist_params
     params.require(:checklist).
-      permit(:name, :description)
+      permit(:name, :description, :checked)
   end
 
   

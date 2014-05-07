@@ -1,0 +1,21 @@
+<%= form_for(@user) do |f| %>
+  <%= render "shared/errors", error_item: @user %>
+  <p>
+    <%= f.password_field(:password,{ class: "form-control", placeholder: "Password"}) %>
+  </p>
+  <p>
+  <%= f.password_field(:password_confirmation,{ class: "form-control", placeholder: "Password Confirmation"}) %>
+  </p>
+  <% if current_user != @user %>
+    <p>
+      <%= f.label(:pwchange, "Require Password Change?") %>
+      <%= f.check_box(:pwchange) %>
+    </p>
+  <% end %>
+
+  <br/>
+<div style="float: left; width: auto; padding-right: 5px">
+  <%= f.submit('Update Password', :method => "pwchange", class: "btn btn-primary") %>
+</div>
+  
+<% end %>

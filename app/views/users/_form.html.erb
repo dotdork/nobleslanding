@@ -1,26 +1,30 @@
 <%= form_for(@user) do |f| %>
   <%= render "shared/errors", error_item: @user %>
   <p>
-    <%= f.label(:name, "Your Name") %><br/>
-    <%= f.text_field(:name, autofocus: true) %>
+    <%= f.text_field(:name, { class: "form-control", placeholder: "Name", autofocus: true }) %>
   </p>
   <p>
-    <%= f.label(:email) %><br/>
-    <%= f.email_field(:email,cols: 40) %>
+    <%= f.email_field(:email,{ class: "form-control", placeholder: "Email"}) %>
   </p>
-  <p>
-    <%= f.label(:password) %><br/>
-    <%= f.password_field(:password,cols: 40) %>
-  </p>
-  <p>
-    <%= f.label(:password_confirmation, "Password Confirmation") %><br/>
-    <%= f.password_field(:password_confirmation,cols: 40) %>
-  </p>
+  <% if @user.new_record? %>
+    <p>
+      <%= f.password_field(:password,{ class: "form-control", placeholder: "Password"}) %>
+    </p>
+    <p>
+      <%= f.password_field(:password_confirmation,{ class: "form-control", placeholder: "Password Confirmation"}) %>
+    </p>
+  <% end %>
   <% if current_user_admin? %>
     <p>
       <%= f.label(:relation, "Relation?") %>
       <%= f.select(:relation,User::RELATIONS_ADMIN, prompt: "Pick one" ) %>
     </p>
+    <% if current_user != @user %>
+      <p>
+        <%= f.label(:pwchange, "Require Password Change?") %>
+        <%= f.check_box(:pwchange) %>
+      </p>
+    <% end %>
     <p>
       <%= f.label(:admin, "Admin Privileges?") %>
       <%= f.check_box(:admin) %>

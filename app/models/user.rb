@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
                
   validates :relation, presence: true, inclusion: { in: RELATIONS_ADMIN }
-
     
   # Methods
   RELATIONS_ADMIN.each_with_index do |meth, index|

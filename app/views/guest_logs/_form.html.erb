@@ -1,12 +1,10 @@
 <%= form_for(@guest_log) do |f| %>
   <%= render "shared/errors", error_item: @guest_log %>
   <p>
-    <%= f.label(:name, "Your Name") %><br/>
-  <%= f.text_field(:name, { value: current_user.name }) %>
+    <%= f.text_field(:name, { class: "form-control", placeholder: "Name", value: current_user.name }) %>
   </p>
   <p>
-    <%= f.label(:log, "About Your Stay") %><br/>
-    <%= f.text_area(:log,cols: 40,rows: 7, autofocus: true) %>
+    <%= f.text_area(:log,{ class: "form-control", placeholder: "About Your Stay", autofocus: true}) %>
   </p>
   <p>
     <%= f.label(:in_at, "Check In Date") %><br/>

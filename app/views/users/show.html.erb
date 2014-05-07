@@ -3,7 +3,6 @@
 <p>
 Name: <%= @user.name %><br/>
 Email: <%= mail_to @user.email %><br/>
-Privilege: <%= @user.admin_s %><br/>
 Relation:  <%= @user.relation || "Unknown" %> <br/>
 Privilege: <%= @user.admin_s %>
 
@@ -11,7 +10,10 @@ Privilege: <%= @user.admin_s %>
 
 <br/>
 <p>
-<%= button_to "Edit Account", edit_user_path, :method => "get", class: "btn btn-primary" %>
-<%= button_to "Delete Account", user_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-danger" %>
+<%= button_to "Edit Info", edit_user_path, :method => "get", class: "btn btn-sm btn-primary" %>
+<%= button_to "Change Password", edit_user_password_path(@user), :method => "get", class: "btn btn-sm btn-warning" %>
+<%= button_to "Delete", user_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-sm btn-danger" %>
 </p>
+<p>
+
 

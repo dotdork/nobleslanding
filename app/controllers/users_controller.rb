@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
 
   before_action :require_signin
-  before_action :require_correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :require_correct_user, only: [:edit, :update, :destroy, :show, :password]
   before_action :require_admin, only: [:index]
     
   def index
     @users = User.order(:name)
+    
+    @all_emails = User.uniq.pluck(:email)
   end
 
   def show
@@ -24,7 +26,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
- 
+
+  def password
+    @user = User.find(params[:id])
+  end
+  
+   
   def edit
     @user = User.find(params[:id])
   end 
@@ -50,16 +57,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if params[:user][:password] && current_user == @user
+      params[:user][:pwchange] = false
+    end
     if @user.update(user_params)
-      redirect_to @user, notice: "User updated successfully"
+      redirect_to(session[:intended_url] || @user, notice: "User updated successfully")
     else
-      render :edit
+      if params[:user][:password]
+        render :password
+      else
+        render :edit
+      end
     end
   end
       
 private
  def user_params
-   params.require(:user).permit(:name,:email,:password,:password_confirmation, :relation, :admin)
+   params.require(:user).permit(:name,:email,:password,:password_confirmation, :relation, :admin, :pwchange)
  end
   
 end

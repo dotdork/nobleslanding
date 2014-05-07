@@ -241,8 +241,7 @@ end
 # House Rules
 if !Checklist.find_by(name: "House Rules")
   rules = Checklist.new(name: "House Rules",
-                            description: "Please help us keep Noble's Landing looking Nice and New!  
-                            HAVE FUN BE SAFE! REMEMBER TOO MUCH SUN IS NO FUN!!!")
+                            description: "Please help us keep Noble's Landing looking Nice and New!")
                                 
   rules.save
 
@@ -366,7 +365,12 @@ if !Checklist.find_by(name: "House Rules")
       'Amount Paid' from Nightly Fees (if in doubt call someone).  
       Obviously this will be a learning experience for all of us.  
       We want everyone to have lots of FUN but Please be RESPONSIBLE!"
-    },                                                                                                                    
+    },   
+    { 
+      name: "HAVE FUN BE SAFE! REMEMBER TOO MUCH SUN IS NO FUN!!! ",
+      description: ""
+    },          
+                                                                                                                    
   ]
                                 
   seq = 0

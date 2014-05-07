@@ -7,6 +7,7 @@ NoblesLanding::Application.routes.draw do
 
   resources :users
   get "signup" => "users#new"
+  get "/users/:id/password" => "users#password", as: "edit_user_password"
 
 
   resources :guest_logs
