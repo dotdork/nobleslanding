@@ -9,7 +9,7 @@ class ChecklistsController < ApplicationController
   
   def show
     @checklist = Checklist.find(params[:id])
-    @items = @checklist.checklist_items.order(:seq)
+    @items = @checklist.checklist_items.order(:seq)    
   end
   
   def edit
