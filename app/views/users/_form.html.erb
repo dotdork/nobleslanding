@@ -19,7 +19,7 @@
       <%= f.label(:relation, "Relation?") %>
       <%= f.select(:relation,User::RELATIONS_ADMIN, prompt: "Pick one" ) %>
     </p>
-    <% if current_user != @user %>
+    <% if current_user != @user && @user.local? %>
       <p>
         <%= f.label(:pwchange, "Require Password Change?") %>
         <%= f.check_box(:pwchange) %>

@@ -1,6 +1,15 @@
 <div id="login-screen" style="width: 250px;">
+  <br/>
+  <%= button_to "Sign in with Facebook", "/auth/facebook", :method => "get", class:"btn btn-lg btn-primary btn-block" %>
+  
+    <p style='font-size: 85%; text-align: center'>
+      We will never post anything to Facebook 
+    </p>
+    <h4 style='text-align: center;'>
+      OR
+    </h4>
   <%= form_tag(session_path, class: "form-signin", role: "form") do %>
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h3 style="text-align: center" class="form-signin-heading">Use Local Account</h3>
     <%= email_field_tag :email, nil, { class: "form-control", placeholder: "Email address", required: "", autofocus: true } %>
     <%= password_field_tag :password, nil, { class: "form-control", placeholder: "Password", required: "" } %>
     <!-- 
@@ -10,6 +19,7 @@
     -->
     <br/>
     <%= submit_tag "Sign In", class: "btn btn-lg btn-primary btn-block" %>
+    <!-- <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> -->
   <% end %>
 </div>
 

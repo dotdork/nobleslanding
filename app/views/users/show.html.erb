@@ -1,17 +1,56 @@
 <h2><%= @user.name %>'s Account</h2>
 
-<p>
-Name: <%= @user.name %><br/>
-Email: <%= mail_to @user.email %><br/>
-Relation:  <%= @user.relation || "Unknown" %> <br/>
-Privilege: <%= @user.admin_s %>
+<table class="table table-striped table-condensed table-hover table-responsive" style="width: 90%">
+  <tr>
+    <td style="width: 120px;">
+      <strong>Name</strong>
+    </td>
+    <td>
+      <%= @user.name %>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 120px;">
+      <strong>Email</strong>
+    </td>
+    <td>
+      <%= mail_to @user.email %>
+    </td>
+  </tr>  
+  <tr>
+    <td style="width: 120px;">
+      <strong>Relation</strong>
+    </td>
+    <td>
+      <%= @user.relation || "Unknown" %>
+    </td>
+  </tr>  
+  <tr>
+    <td style="width: 120px;">
+      <strong>Privilege</strong>
+    </td>
+    <td>
+      <%= @user.admin_s %>
+    </td>
+  </tr>  
+  <tr>
+    <td style="width: 120px;">
+      <strong>Auth Provider</strong>
+    </td>
+    <td>
+      <%= @user.provider.capitalize %>
+    </td>
+  </tr> 
 
-</p>
+
+</table>
 
 <br/>
 <p>
 <%= button_to "Edit Info", edit_user_path, :method => "get", class: "btn btn-sm btn-primary" %>
-<%= button_to "Change Password", edit_user_password_path(@user), :method => "get", class: "btn btn-sm btn-warning" %>
+<% if @user.local? %>
+  <%= button_to "Change Password", edit_user_password_path(@user), :method => "get", class: "btn btn-sm btn-warning" %>
+<% end %>
 <%= button_to "Delete", user_path, :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-sm btn-danger" %>
 </p>
 <p>

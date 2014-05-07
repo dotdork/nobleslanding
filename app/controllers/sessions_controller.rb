@@ -4,8 +4,15 @@ class SessionsController < ApplicationController
   end
   
   def create
-    # authenticate with database    
-    if user = User.authenticate(params[:email],params[:password])
+    # authenticate with database   
+    user = nil
+    case params[:provider]
+    when 'facebook'
+      user = User.authenticate_facebook(env["omniauth.auth"])
+    else user = User.authenticate_local(params[:email],params[:password])
+    end
+
+    if user
       if !user.disabled?
         session[:user_id] = user.id
         if user.pwchange?

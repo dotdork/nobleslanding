@@ -9,6 +9,9 @@ NoblesLanding::Application.routes.draw do
   get "signup" => "users#new"
   get "/users/:id/password" => "users#password", as: "edit_user_password"
 
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/failure' => 'home#index'
+  get 'signout' => 'sessions#destroy', as: 'signout'
 
   resources :guest_logs
   

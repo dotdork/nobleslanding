@@ -6,6 +6,7 @@
     <th>Name</th>
     <th>Email</th> 
     <th>Relation</th>
+    <th>Provider</th>
     <th>Privilege</th>
   </tr>
   <% @users.each do |user| %>
@@ -18,6 +19,9 @@
         </td>
         <td>
           <%= user.relation || "Unknown" %>
+        </td>
+        <td>
+          <%= user.provider.capitalize %>
         </td>
         <td>
           <%= user.admin_s %>
