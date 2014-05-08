@@ -12,6 +12,29 @@ def check_errors(object)
 end
 
 
+# populate User Categories
+relations_list =
+  { Disabled: "Disables Account and User cannot log in",
+    Family: "Family member that is not a manager or member",
+    Guest: "Invited Friends of Managers, Members or their Families",
+    Manager: "Noble's Landing LLC Listed Managers",
+    Member: "Adult Heirs (first Generation) to Noble's Landing LLC"
+  }  
+
+  relations_list.each do |name,desc|
+    if name == 'Manager' || name == 'Disabled'
+      admin_only = true
+    else
+      admin_only = false
+    end
+    if !relation = Relation.find_by(name: name)
+      relation = Relation.create(name: name,
+                                 description: desc,
+                                 admin_only: admin_only)
+      check_errors(relation) 
+    end
+  end
+
 # Default Admin User
 if !User.find_by(email: "admin@diddsdev.com")
   admin = User.create(name: "Didds",
@@ -19,7 +42,7 @@ if !User.find_by(email: "admin@diddsdev.com")
                       password: "admin123",
                       password_confirmation: "admin123",
                       admin: true,
-                      relation: "Family")
+                      relation_id: "Family")
                       
   check_errors(admin)                 
 end
@@ -28,7 +51,8 @@ end
 # Departure Checklist
 if !Checklist.find_by(name: "Departure")
   departure = Checklist.new(name: "Departure",
-                            description: "Please ensure the following is completed prior to ending your stay at Noble's Landing.")
+                            description: "Please ensure the following is completed prior to ending your stay at Noble's Landing.",
+                            checked: true)
                                 
   departure.save
 
@@ -161,7 +185,8 @@ end
 # Hurricane Checklist
 if !Checklist.find_by(name: "Hurricane Preparations")
   hurricane = Checklist.new(name: "Hurricane Preparations",
-                            description: "Please ensure the following is completed prior to any potential Hurricane threat to Noble's Landing.")
+                            description: "Please ensure the following is completed prior to any potential Hurricane threat to Noble's Landing.",
+                            checked: true)
                                 
   hurricane.save
 
@@ -241,7 +266,8 @@ end
 # House Rules
 if !Checklist.find_by(name: "House Rules")
   rules = Checklist.new(name: "House Rules",
-                            description: "Please help us keep Noble's Landing looking Nice and New!")
+                            description: "Please help us keep Noble's Landing looking Nice and New!",
+                            checked: false)
                                 
   rules.save
 

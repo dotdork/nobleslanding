@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507193443) do
+ActiveRecord::Schema.define(version: 20140508151229) do
 
   create_table "checklist_items", force: true do |t|
     t.string   "name"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20140507193443) do
     t.string   "user_id"
   end
 
+  create_table "relations", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "admin_only"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -50,12 +58,12 @@ ActiveRecord::Schema.define(version: 20140507193443) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",            default: false
-    t.string   "relation"
     t.boolean  "pwchange",         default: false
     t.string   "provider",         default: "local"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "relation_id"
   end
 
 end

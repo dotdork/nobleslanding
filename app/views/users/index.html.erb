@@ -5,9 +5,12 @@
   <tr>
     <th>Name</th>
     <th>Email</th> 
-    <th>Relation</th>
-    <th>Provider</th>
+    <th>Category</th>
+    <!-- 
+      <th>Provider</th> 
+    -->
     <th>Privilege</th>
+    <th>Actions</th>
   </tr>
   <% @users.each do |user| %>
       <tr>
@@ -18,14 +21,29 @@
           <%= mail_to user.email %>
         </td>
         <td>
-          <%= user.relation || "Unknown" %>
+          <%= user.relation_id || "Unknown" %>
         </td>
+          <!--
         <td>
           <%= user.provider.capitalize %>
         </td>
+          -->
         <td>
           <%= user.admin_s %>
+        </td>
+        <td>
+          <%= button_to "Edit", edita_user_path(user), :method => "get", class: "btn btn-xs btn-success" %>
+          <% if user.local? %>
+            <%= button_to "Password", edit_user_password_path(user), :method => "get", class: "btn btn-xs btn-warning" %>
+          <% end %>
+          <% if !user.admin? %>
+            <%= button_to "Delete", user_path(user), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+          <% end %>
         </td>
       </tr>
   <% end %>
 </table>
+  
+<p>
+  <%= button_to "Add User Account", new_user_path(), :method => "get", class: "btn btn-primary" %>
+</p>

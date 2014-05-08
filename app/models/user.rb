@@ -1,23 +1,12 @@
 class User < ActiveRecord::Base
   has_secure_password
-
-  # constants
-  RELATIONS = [ "Owner", "Family", "Friend" ]
-  RELATIONS_ADMIN = RELATIONS + [ "Disabled" ] 
+  belongs_to :relation
 
   # validations  
   validates :name, presence: true
   validates :email, presence: true,
                     format: /\A\S+@\S+\z/,
-                    uniqueness: { case_sensitive: false }
-               
-  validates :relation, presence: true, inclusion: { in: RELATIONS_ADMIN }
-    
-  # Methods
-  RELATIONS_ADMIN.each_with_index do |meth, index|
-    define_method("#{meth.downcase}?") { relation == meth }
-  end
-
+                    uniqueness: { case_sensitive: false }   
   
   # Authentication Methods   
   def self.authenticate_local(email, password)
@@ -38,8 +27,7 @@ class User < ActiveRecord::Base
         user.admin = false
         user.password = 'bogus'
         user.password_confirmation = 'bogus'
-      end
-      
+      end     
       user.save!
     end
   end
@@ -49,6 +37,10 @@ class User < ActiveRecord::Base
     provider == 'local'
   end
 
+  def disabled?
+    relation_id == 'Disabled'
+  end
+  
   def admin_s
     if admin
       "Admin"

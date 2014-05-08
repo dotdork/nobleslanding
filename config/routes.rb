@@ -8,12 +8,14 @@ NoblesLanding::Application.routes.draw do
   resources :users
   get "signup" => "users#new"
   get "/users/:id/password" => "users#password", as: "edit_user_password"
+  get "/users/:id/edita" => "users#edita", as: "edita_user"
 
   get 'auth/:provider/callback' => 'sessions#create'
   get 'auth/failure' => 'home#index'
   get 'signout' => 'sessions#destroy', as: 'signout'
 
   resources :guest_logs
+  resources :relations
   
   resources :checklists do
     resources :checklist_items

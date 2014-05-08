@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :require_signin
   before_action :require_correct_user, only: [:edit, :update, :destroy, :show, :password]
   before_action :require_admin, only: [:index]
+  before_action :get_relations
     
   def index
     @users = User.order(:name)
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user, notice: "New user successfully added"
+      redirect_to users_path, notice: "New user successfully added"
     else
       render :new
     end
@@ -33,6 +34,10 @@ class UsersController < ApplicationController
   
    
   def edit
+    @user = User.find(params[:id])
+  end 
+  
+  def edita
     @user = User.find(params[:id])
   end 
 
@@ -61,7 +66,11 @@ class UsersController < ApplicationController
       params[:user][:pwchange] = false
     end
     if @user.update(user_params)
-      redirect_to(session[:intended_url] || @user, notice: "User updated successfully")
+      if current_user_admin?
+        redirect_to(session[:intended_url] || users_path, notice: "User updated successfully")
+      else
+        redirect_to(session[:intended_url] || @user, notice: "User updated successfully")
+      end
     else
       if params[:user][:password]
         render :password
@@ -73,9 +82,16 @@ class UsersController < ApplicationController
       
 private
  def user_params
-   params.require(:user).permit(:name,:email,:password,:password_confirmation, :relation, :admin, :pwchange)
+   params.require(:user).permit(:name,:email,:password,:password_confirmation, :relation_id, :admin, :pwchange)
  end
   
+ def get_relations
+   if current_user_admin?
+     @relations = Relation.order(:name)
+   else
+     @relations = Relation.where(admin_only: false).order(:name)
+   end
+ end
 end
 
 

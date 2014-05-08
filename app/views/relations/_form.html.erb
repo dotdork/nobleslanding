@@ -1,0 +1,17 @@
+<%= form_for(@relation) do |f| %>
+  <%= render "shared/errors", error_item: @relation %>
+  <p>
+    <%= f.text_field(:name, { class: "form-control", placeholder: "Category Name", autofocus: true }) %>
+  </p>
+  <p>
+    <%= f.text_area(:description, { class: "form-control", placeholder: "Category Description" }) %>
+  </p>
+  <p>
+    <%= f.label(:admin_only, "Set by Admin only?") %>
+    <%= f.check_box(:admin_only) %>
+  </p>  
+  <br/>
+  <div style="float: left; width: auto; padding-right: 5px">
+    <%= f.submit(class: "btn btn-primary") %>
+  </div>
+<% end %>

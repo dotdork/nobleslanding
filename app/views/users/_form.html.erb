@@ -14,11 +14,11 @@
       <%= f.password_field(:password_confirmation,{ class: "form-control", placeholder: "Password Confirmation"}) %>
     </p>
   <% end %>
+  <p>
+    <%= f.label(:relation_id, "Relation?") %>
+    <%= f.select(:relation_id,@relations.pluck(:name), prompt: "Pick one" ) %>
+  </p>  
   <% if current_user_admin? %>
-    <p>
-      <%= f.label(:relation, "Relation?") %>
-      <%= f.select(:relation,User::RELATIONS_ADMIN, prompt: "Pick one" ) %>
-    </p>
     <% if current_user != @user && @user.local? %>
       <p>
         <%= f.label(:pwchange, "Require Password Change?") %>
@@ -29,13 +29,7 @@
       <%= f.label(:admin, "Admin Privileges?") %>
       <%= f.check_box(:admin) %>
     </p>
-  <% else %>
-    <p>
-      <%= f.label(:relation, "Relation?") %>
-      <%= f.select(:relation,User::RELATIONS, prompt: "Pick one" ) %>
-    </p>
   <% end %>
-  
   <div style="float: left; width: auto; padding-right: 5px">
     <%= f.submit(class: "btn btn-primary") %>
   </div>
