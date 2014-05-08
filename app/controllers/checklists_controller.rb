@@ -4,11 +4,18 @@ class ChecklistsController < ApplicationController
   before_action :require_admin, except: [:index, :show]
     
   def index
-    @checklists = Checklist.order(:name)
+    if current_user
+      @checklists = Checklist.order(:name)
+    else
+      @checklists = Checklist.where(require_login: false).order(:name)
+    end
   end
   
   def show
     @checklist = Checklist.find(params[:id])
+    if @checklist.require_login
+      require_signin
+    end
     @items = @checklist.checklist_items.order(:seq)    
   end
   
@@ -50,7 +57,7 @@ class ChecklistsController < ApplicationController
 private 
   def checklist_params
     params.require(:checklist).
-      permit(:name, :description, :checked)
+      permit(:name, :description, :checked, :require_login)
   end
 
   

@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     
     def current_checklists
-      Checklist.order(:name)
+      if current_user
+        @checklists = Checklist.order(:name)
+      else
+        @checklists = Checklist.where(require_login: false).order(:name)
+      end
     end
     helper_method :current_checklists
     

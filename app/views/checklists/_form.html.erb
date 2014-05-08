@@ -9,6 +9,10 @@
   <p>
     <%= f.label(:checked, "Enable Checkboxes in List?") %><br/>
     <%= f.check_box(:checked) %>
+  </p> 
+  <p>
+    <%= f.label(:require_login, "Require Login to View?") %><br/>
+    <%= f.check_box(:require_login) %>
   </p>  
   <div style="float: left; width: auto; padding-right: 5px">
     <% if @checklist.new_record? %>

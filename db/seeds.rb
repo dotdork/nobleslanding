@@ -52,7 +52,8 @@ end
 if !Checklist.find_by(name: "Departure")
   departure = Checklist.new(name: "Departure",
                             description: "Please ensure the following is completed prior to ending your stay at Noble's Landing.",
-                            checked: true)
+                            checked: true,
+                            require_login: false)
                                 
   departure.save
 
@@ -186,7 +187,8 @@ end
 if !Checklist.find_by(name: "Hurricane Preparations")
   hurricane = Checklist.new(name: "Hurricane Preparations",
                             description: "Please ensure the following is completed prior to any potential Hurricane threat to Noble's Landing.",
-                            checked: true)
+                            checked: true,
+                            require_login: false)
                                 
   hurricane.save
 
@@ -267,7 +269,8 @@ end
 if !Checklist.find_by(name: "House Rules")
   rules = Checklist.new(name: "House Rules",
                             description: "Please help us keep Noble's Landing looking Nice and New!",
-                            checked: false)
+                            checked: false,
+                            require_login: false)
                                 
   rules.save
 
