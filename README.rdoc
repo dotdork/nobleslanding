@@ -11,6 +11,13 @@ Things you may want to cover:
 
 * Configuration
 
+Required ENV Vars
+------------------
+ENV['FACEBOOK_APP_ID']
+ENV['FACEBOOK_SECRET']
+ENV["GOOGLE_CLIENT_ID"]
+ENV["GOOGLE_CLIENT_SECRET"]
+
 * Database creation
 
 * Database initialization

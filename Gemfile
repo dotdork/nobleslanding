@@ -66,3 +66,6 @@ end
 
 # Facebook Login Integration
 gem 'omniauth-facebook'
+
+# Google Login Integration
+gem "omniauth-google-oauth2"

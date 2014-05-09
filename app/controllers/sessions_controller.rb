@@ -6,9 +6,12 @@ class SessionsController < ApplicationController
   def create
     # authenticate with database   
     user = nil
+    puts "############################################################### #{params[:provider]}"
     case params[:provider]
     when 'facebook'
       user = User.authenticate_facebook(env["omniauth.auth"])
+    when 'google_oauth2'
+      user = User.authenticate_google(env["omniauth.auth"])
     else user = User.authenticate_local(params[:email],params[:password])
     end
 
