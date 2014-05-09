@@ -10,10 +10,10 @@
     <tr>
       <td style="width: 70px">
         <% if item != @items.first %>
-          <%= button_to "&#8593;".html_safe, checklist_moveup_checklist_item_path_path(@checklist,item), :method => "get", class: "btn btn-xs btn-primary", style: "padding-left: 10px; padding-right: 10px" %>
+          <%= button_to "&#8593;".html_safe, checklist_moveup_checklist_item_path(@checklist,item), :method => "get", class: "btn btn-xs btn-primary", style: "padding-left: 10px; padding-right: 10px" %>
         <% end %>
         <% if item != @items.last %>
-          <%= button_to "&#8595".html_safe, checklist_movedown_checklist_item_path_path(@checklist,item), :method => "get",class: "btn btn-xs btn-info", style: "padding-left: 10px; padding-right: 10px" %>
+          <%= button_to "&#8595".html_safe, checklist_movedown_checklist_item_path(@checklist,item), :method => "get",class: "btn btn-xs btn-info", style: "padding-left: 10px; padding-right: 10px" %>
         <% end %>
       </td>
       <td>

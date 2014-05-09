@@ -1,4 +1,10 @@
-<h2>Accounts</h2>
+<h2>Accounts
+
+  <%= button_to "View All", users_path, :method => "get", class: "btn btn-xs btn-primary" %>
+  <%= button_to "View Disabled", users_limited_path('Disabled'), :method => "get", class: "btn btn-xs btn-primary" %>
+  <%= button_to "View Admins", users_limited_path('Admins'), :method => "get", class: "btn btn-xs btn-primary" %>
+
+</h2>
 
 <br/>
 <table class="table table-striped table-condensed table-hover table-responsive">

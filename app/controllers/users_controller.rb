@@ -6,7 +6,14 @@ class UsersController < ApplicationController
   before_action :get_relations
     
   def index
-    @users = User.order(:name).page(params[:page])
+    case params[:cat]
+    when 'Disabled'
+      @users = User.where(relation_id: 'Disabled').order(:name).page(params[:page])
+    when 'Admins'
+      @users = User.where(admin: true).order(:name).page(params[:page])
+    else
+      @users = User.order(:name).page(params[:page])
+    end
   end
 
   def show
