@@ -27,6 +27,9 @@
   	  </tr>
   <% end %>
 </table>
+  
+<%= will_paginate @checklists, renderer: BootstrapPagination::Rails %>
+
 <p>
   <%= button_to "Add List", new_checklist_path(), :method => "get", class: "btn btn-primary" %>
 </p>

@@ -14,7 +14,9 @@
   	  </tr>
   <% end %>
 </table>
-  
+
+<%= will_paginate @checklists, renderer: BootstrapPagination::Rails %>
+
 <% if current_user_admin? %>
   <p>
     <%= button_to "Manage Lists", manage_checklists_path, :method => "get", class: "btn btn-primary" %>

@@ -6,9 +6,7 @@
     <th>Name</th>
     <th>Email</th> 
     <th>Category</th>
-    <!-- 
       <th>Provider</th> 
-    -->
     <th>Privilege</th>
     <th>Actions</th>
   </tr>
@@ -23,11 +21,9 @@
         <td>
           <%= user.relation_id || "Unknown" %>
         </td>
-          <!--
         <td>
           <%= user.provider.capitalize %>
         </td>
-          -->
         <td>
           <%= user.admin_s %>
         </td>
@@ -44,6 +40,7 @@
   <% end %>
 </table>
   
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 <p>
   <%= button_to "Add User Account", new_user_path(), :method => "get", class: "btn btn-primary" %>
 </p>

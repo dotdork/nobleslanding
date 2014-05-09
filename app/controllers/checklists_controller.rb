@@ -5,17 +5,17 @@ class ChecklistsController < ApplicationController
     
   def index
     if current_user
-      @checklists = Checklist.order(:name)
+      @checklists = Checklist.order(:name).page(params[:page])
     else
-      @checklists = Checklist.where(require_login: false).order(:name)
+      @checklists = Checklist.where(require_login: false).order(:name).page(params[:page])
     end
   end
 
   def manage
     if current_user
-      @checklists = Checklist.order(:name)
+      @checklists = Checklist.order(:name).page(params[:page])
     else
-      @checklists = Checklist.where(require_login: false).order(:name)
+      @checklists = Checklist.where(require_login: false).order(:name).page(params[:page])
     end
   end
     

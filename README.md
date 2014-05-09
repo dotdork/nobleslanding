@@ -3,7 +3,7 @@ Noble's Landing Site Features
 --------------
 
 This site is meant to be an easy-to-use resource for Noble's Landing guests.  It is being kept
-fairly "light weight" (aka no pictures) to make it easy to load and use in places where
+fairly "light weight" (e.g. no pictures) to make it easy to load and use in places where
 an internet connection is slow (like the beach).  As well, the site should be usable 
 on computers, tablets and phones.
 
@@ -64,7 +64,7 @@ The Admin header dropdown will only appear for Admin priviledged users.
 Notable Features:
 - Manage User Accounts:  create/edit/change passwords/delete options for all users
 - Manage User Categories:  Add/edit/remove categories for users
-- New List:  Create a new List to add to "Rules & Lists"
+- Manage Lists:  Create/Edit/Maintain Lists to add to "Rules & Lists"
 
 --------------------
 Thanks and Props

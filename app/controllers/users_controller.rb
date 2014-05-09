@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   before_action :get_relations
     
   def index
-    @users = User.order(:name)
-    
-    @all_emails = User.uniq.pluck(:email)
+    @users = User.order(:name).page(params[:page])
   end
 
   def show

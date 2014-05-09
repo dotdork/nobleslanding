@@ -7,7 +7,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
                     format: /\A\S+@\S+\z/,
                     uniqueness: { case_sensitive: false }   
-  
+
+  self.per_page = 20
+                          
   # Authentication Methods   
   def self.authenticate_local(email, password)
     user = User.find_by(email: email)

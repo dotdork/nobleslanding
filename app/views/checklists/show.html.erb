@@ -1,9 +1,9 @@
 <h2><%= @checklist.name %></h2>
 
-<h3>
+<h4>
   <%= @checklist.description %>
-</h3>
-
+</h4>
+<br/>
 <% if @items
     @items = find_links(@items)
 end %>

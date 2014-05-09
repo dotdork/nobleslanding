@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   def create
     # authenticate with database   
     user = nil
-    puts "############################################################### #{params[:provider]}"
     case params[:provider]
     when 'facebook'
       user = User.authenticate_facebook(env["omniauth.auth"])
@@ -24,7 +23,13 @@ class SessionsController < ApplicationController
           redirect_to(session[:intended_url] || root_path, notice: "Welcome back, #{user.name}!")
         end
       else
-        flash.now[:alert] = "User Disabled!  Please contact administrator to resolve"
+        if user.provider != 'local'
+        flash.now[:alert] = "Account Disabled!  Please contact administrator to resolve.  If this is your first
+          time signing in with a remote provider (facebook, google, etc), then an admin user will need to enable
+          your account to give you full access to the site.  Or maybe your account was disabled for a reason."
+        else
+          flash.now[:alert] = "Account Disabled!  Please contact administrator to resolve."
+        end          
         render :new       
       end
     else

@@ -418,5 +418,106 @@ if !Checklist.find_by(name: "House Rules")
                                                                                                                  
 end
 
+# House Rates
+if !Checklist.find_by(name: "House Rates")
+  rates = Checklist.new(name: "House Rates",
+                            description: "Our goal is to collect money to help cover taxes, insurance, utilities etc.  
+                            Manager's rate is reduced because of high initial cost for construction and Monthly Fees.  
+                            These Rates were modified at the September 15, 2013 Manager Meeting by majority vote to match estimated 
+                            Costs of Operation.  Thank you for your support.",
+                            checked: false,
+                            require_login: true)
+                                
+  rates.save
+
+  check_errors(rates)
+    
+  rates_items = [ 
+    { 
+      name: "__________ RATES _____________",
+      description: ""
+    },   
+    { 
+      name: "Managers",
+      description: "Spouse/Friend with their grandkids - $20.00/Night"
+    },
+    { 
+      name: "Members",
+      description: "Spouse/Friend with their kids - $50.00/Night"
+    },
+    { 
+      name: "Additional Minor Guests",
+      description: "of above Families - $5.00 Each"
+    },  
+    { 
+      name: "Additional Adult Guests",
+      description: "of above Families - $10.00 Each"
+    },
+    { 
+      name: "Close Friends, Families of Spouses or Work Associates Rate",
+      description: "When house is available: 
+      (Weekly $1,600, weekend $600) or Nightly Rates (weekday $200, weekend $300).
+      Weekend Nights include: Friday night all day Saturday or Saturday night all day Sunday
+      Must be sponsored by Family Member and they will arrange for keys, cleanup and fees. "
+    }, 
+    { 
+      name: "DEFINITIONS",
+      description: ""
+    },
+    { 
+      name: "________ DEFINITIONS __________",
+      description: ""
+    },
+    { 
+      name: "Managers",
+      description: "Noble's Landing LLC Listed Managers"
+    }, 
+    { 
+      name: "Members",
+      description: "Adult Heirs (first Generation) to Noble's Landing LLC"
+    }, 
+    { 
+      name: "Guests",
+      description: "Invited Friends of Managers, Members or their Families"
+    },   
+    { 
+      name: "Adults",
+      description: "Person 21 years old"
+    }, 
+    { 
+      name: "Minor",
+      description: "Person less than 21"
+    },
+    { 
+      name: "______________________________",
+      description: ""
+    },
+    { 
+      name: "21 is the minimum age to stay without a Responsible adult over 21.",
+      description: ""
+    },    
+    { 
+      name: "No Reservations on Busy Holiday Weekends: July 4th, New Years, Christmas, 
+      Memorial Day, Easter and Thanksgiving etc: Managers first choice then open to all",
+      description: ""
+    },
+    { 
+      name: "How to figure your Capital Contribution Amount",
+      description: "Nights spent in Beach House x  Nightly Rate = Amount Due"
+    },                                                                                                                     
+  ]
+                                
+  seq = 0
+  rates_items.each do |item|
+    this_item = rates.checklist_items.new(item)
+    this_item.seq = seq
+    seq += 1
+    this_item.save
+
+    check_errors(this_item)
+    
+  end
+                                                                                                                 
+end
 
 puts "********Seeding Data End************"
