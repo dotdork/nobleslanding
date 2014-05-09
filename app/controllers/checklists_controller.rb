@@ -10,7 +10,15 @@ class ChecklistsController < ApplicationController
       @checklists = Checklist.where(require_login: false).order(:name)
     end
   end
-  
+
+  def manage
+    if current_user
+      @checklists = Checklist.order(:name)
+    else
+      @checklists = Checklist.where(require_login: false).order(:name)
+    end
+  end
+    
   def show
     @checklist = Checklist.find(params[:id])
     if @checklist.require_login

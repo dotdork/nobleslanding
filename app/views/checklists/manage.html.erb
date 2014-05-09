@@ -1,0 +1,32 @@
+<h2>Lists & Rules</h2>
+
+<br/>
+
+<table class="table table-striped table-condensed table-hover table-responsive" style="width: 90%">
+<tr>
+  <th>Name</th>
+  <th>Description</th> 
+  <th>Require Login?</th>
+  <th>Actions</th>
+</tr>
+  <% @checklists.each do |checklist| %>
+      <tr>
+        <td style="width: 150px; valign="top";>
+          <%= link_to(checklist.name,checklist) %>
+        </td>
+    	  <td>
+    	    <%= checklist.description %>
+    	  </td>
+        <td>
+          <%= checklist.require_login.to_s.capitalize %>
+        </td>
+        <td>
+          <%= button_to "Edit", edit_checklist_path(checklist), :method => "get", class: "btn btn-xs btn-success" %>
+          <%= button_to "Delete", checklist_path(checklist), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+        </td>
+  	  </tr>
+  <% end %>
+</table>
+<p>
+  <%= button_to "Add List", new_checklist_path(), :method => "get", class: "btn btn-primary" %>
+</p>

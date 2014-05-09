@@ -1,5 +1,6 @@
+--------------
 Noble's Landing Site Features
-______________________________
+--------------
 
 This site is meant to be an easy-to-use resource for Noble's Landing guests.  It is being kept
 fairly "light weight" (aka no pictures) to make it easy to load and use in places where
@@ -16,11 +17,11 @@ will display at the top right on header (with dropdown links to profile and sign
 
 Notable Features:
 - Local accounts can be created by Admin users
-- Facebook authentication is allowed.  Once authenticated the following occurs:
+- Facebook and Google authentication is allowed.  Once authenticated the following occurs:
 	- If it is the first auth, a user is created in a disabled state
 	- Disabled user will have to be enabled by a site Admin user
-	- Once enabled, user can use facebook login to sign in and out of the site
-	- This flow prevents anyone from Facebook having access to the site
+	- Once enabled, user can use facebook/google login to sign in and out of the site
+	- This flow prevents allowing everyone from Facebook/Google having access to the site
 - Users can be disabled at Admin discretion
 - User accounts can be made into Admin by other Admins
 - Admin accounts can create or modify any dynamic content on the site (Guest Logs, Lists, etc)

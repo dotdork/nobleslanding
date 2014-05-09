@@ -41,7 +41,7 @@
           <ul class="dropdown-menu">
             <li><a href="<%= checklists_path %>">All Lists</a></li>
             <% if current_user_admin? %>
-              <li><a href="<%= new_checklist_path %>">New List</a></li>
+              <li><a href="<%= new_checklist_path %>">Add List</a></li>
             <% end %>
             <% if current_checklists %>
               <li class="divider"></li>
@@ -60,7 +60,7 @@
             <ul class="dropdown-menu">
               <li><a href="<%= users_path %>">Manage User Accounts</a></li>
               <li><a href="<%= relations_path %>">Manage User Categories</a></li>
-              <li><a href="<%= new_checklist_path %>">New List</a></li>
+              <li><a href="<%=  manage_checklists_path %>">Manage Lists</a></li>
 
             </ul>
           </li>
