@@ -66,4 +66,12 @@ class User < ActiveRecord::Base
       "Standard"
     end
   end
+  
+  def provider_s
+    if provider == 'google_oauth2'
+      'google'
+    else
+      provider
+    end
+  end
 end
