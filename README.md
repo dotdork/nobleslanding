@@ -1,12 +1,18 @@
 Noble's Landing Site Features
 ______________________________
 
+This site is meant to be an easy-to-use resource for Noble's Landing guests.  It is being kept
+fairly "light weight" (aka no pictures) to make it easy to load and use in places where
+an internet connection is slow (like the beach).  As well, the site should be usable 
+on computers, tablets and phones.
+
+
 --------------
 User Accounts
 --------------
 Some sections of the site can be viewed without logging in, while some other sections require it.
 It will be noted throughout this doc when login is required.  If you are logged in, your name
-will display at the top right on header.
+will display at the top right on header (with dropdown links to profile and sign out)
 
 Notable Features:
 - Local accounts can be created by Admin users

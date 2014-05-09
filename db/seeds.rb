@@ -22,7 +22,7 @@ relations_list =
   }  
 
   relations_list.each do |name,desc|
-    if name == 'Manager' || name == 'Disabled'
+    if name.to_s == 'Manager' || name.to_s == 'Disabled'
       admin_only = true
     else
       admin_only = false
@@ -31,8 +31,11 @@ relations_list =
       relation = Relation.create(name: name,
                                  description: desc,
                                  admin_only: admin_only)
-      check_errors(relation) 
+    else
+      relation.admin_only = admin_only
+      relation.save
     end
+    check_errors(relation) 
   end
 
 # Default Admin User

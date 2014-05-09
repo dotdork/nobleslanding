@@ -12,6 +12,10 @@
   </p>  
   <br/>
   <div style="float: left; width: auto; padding-right: 5px">
-    <%= f.submit(class: "btn btn-primary") %>
+    <% if @relation.new_record? %>
+      <%= f.submit('Create Category',class: "btn btn-primary") %>
+    <% else %>
+      <%= f.submit('Update Category',class: "btn btn-primary") %>
+    <% end %>
   </div>
 <% end %>
