@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   end
   
   def self.authenticate_google(auth)
+    puts auth.to_s
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -51,7 +52,27 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-    
+ 
+  def self.authenticate_google_refresh(auth)
+    puts auth.to_s
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.oauth_token = auth.credentials.token
+      # set refresh token as password
+      user.password = auth.credentials.refresh_token
+      user.password_confirmation = auth.credentials.refresh_token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)  
+      user.email = auth.info.email  
+      if user.new_record?
+        user.relation_id = 'Disabled'
+        user.admin = false
+      end     
+      user.save!
+    end
+  end
+     
   def local?
     provider == 'local'
   end

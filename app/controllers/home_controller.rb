@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
-  before_action :require_signin, only: [:calendar]
+  before_action :require_noble, only: [:calendar]
     
   def calendar
-    
+
   end
 
 end

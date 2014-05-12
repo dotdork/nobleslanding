@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
         redirect_to new_session_url, alert: "Please sign in first!"
       end
     end
+
+    def require_noble
+      session[:intended_url] = nil
+      unless session[:noble_id]
+        # need to check for expiry here and optionally refresh it
+        session[:intended_url] = request.url
+        redirect_to "/auth/google_refresh"
+      end
+    end    
     
     def current_user
       if session[:user_id]
