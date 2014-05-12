@@ -5,7 +5,7 @@ NoblesLanding::Application.routes.draw do
   get "history" => "home#history"
   get "bolivar" => "home#bolivar"
 
-  get "users/:cat" => "users#index", as: "users_limited"
+  get "users/cat/:cat" => "users#index", as: "users_limited"
   resources :users
   get "signup" => "users#new"
   get "/users/:id/password" => "users#password", as: "edit_user_password"
