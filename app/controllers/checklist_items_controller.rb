@@ -51,15 +51,7 @@ class ChecklistItemsController < ApplicationController
   
   def create 
     @checklist = Checklist.find(params[:checklist_id])
-    @checklist_item = @checklist.checklist_items.new(checklist_item_params)
-    # set order to last
-    last_item = ChecklistItem.get_last(params[:checklist_id])
-    if last_item
-      @checklist_item.seq = last_item.seq + 1
-    else
-      @checklist_item.seq = 0
-    end
-    
+    @checklist_item = @checklist.checklist_items.new(checklist_item_params)  
     if @checklist_item.save()
       redirect_to edit_checklist_path(@checklist), notice: "Checklist Item created successfully"
     else
