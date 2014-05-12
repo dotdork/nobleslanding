@@ -17,11 +17,11 @@ class SessionsController < ApplicationController
       user = User.authenticate_local(params[:email],params[:password])
     end
 
-    if user.name == 'Nobles Landing'
-      session[:noble_id] = user.id
-      redirect_to(session[:intended_url] || calendar_path)
-    else   
-      if user
+    if user
+      if user.name == 'Nobles Landing'
+        session[:noble_id] = user.id
+        redirect_to(session[:intended_url] || calendar_path)
+      else  
         if !user.disabled?
           session[:user_id] = user.id
           if user.pwchange?
@@ -39,11 +39,12 @@ class SessionsController < ApplicationController
           end          
           render :new       
         end
-      else
-        flash.now[:alert] = "Invalid email or password combination!"
-        render :new
       end
+    else
+      flash.now[:alert] = "Invalid email or password combination!"
+      render :new
     end
+
   end
   
   def destroy

@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true,
                     format: /\A\S+@\S+\z/,
-                    uniqueness: { case_sensitive: false }   
+                    uniqueness: { case_sensitive: false, :if => :local? }   
 
   self.per_page = 20
                           
   # Authentication Methods   
   def self.authenticate_local(email, password)
-    user = User.find_by(email: email)
+    user = User.find_by(email: email, provider: 'local')
     user && user.authenticate(password)
   end 
   
