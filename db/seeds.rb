@@ -461,10 +461,6 @@ if !Checklist.find_by(name: "House Rates")
       Must be sponsored by Family Member and they will arrange for keys, cleanup and fees. "
     }, 
     { 
-      name: "DEFINITIONS",
-      description: ""
-    },
-    { 
       name: "________ DEFINITIONS __________",
       description: ""
     },
