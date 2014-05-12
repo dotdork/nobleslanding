@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     {
       name: 'google_refresh',
       client_options: {:ssl => {:verify => false}},
-      prompt: 'consent',
+      # prompt: 'consent',
       access_type: 'offline',
       login_hint: 'nobleslanding@gmail.com'
     }  

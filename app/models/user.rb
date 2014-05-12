@@ -61,13 +61,15 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.oauth_token = auth.credentials.token
       # set refresh token as password
-      user.password = auth.credentials.refresh_token
-      user.password_confirmation = auth.credentials.refresh_token
+      #user.password = auth.credentials.refresh_token
+      #user.password_confirmation = auth.credentials.refresh_token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)  
       user.email = auth.info.email  
       if user.new_record?
         user.relation_id = 'Disabled'
         user.admin = false
+        user.password = 'bogus'
+        user.password_confirmation = 'bogus'
       end     
       user.save!
     end
