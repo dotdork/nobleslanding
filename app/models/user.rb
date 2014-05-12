@@ -50,7 +50,8 @@ class User < ActiveRecord::Base
       end     
       user.save!
     end
-  end  
+  end
+    
   def local?
     provider == 'local'
   end

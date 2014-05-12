@@ -4,6 +4,7 @@ NoblesLanding::Application.routes.draw do
   get "about" => "home#about"
   get "history" => "home#history"
   get "bolivar" => "home#bolivar"
+  get "calendar" => "home#calendar"
 
   get "users/cat/:cat" => "users#index", as: "users_limited"
   resources :users
