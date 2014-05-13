@@ -38,10 +38,17 @@
       <strong>Auth Provider</strong>
     </td>
     <td>
-      <%= @user.provider.capitalize %>
+      <%= @user.provider_s.capitalize %>
     </td>
   </tr> 
-
+  <tr>
+    <td style="width: 120px;">
+      <strong>Date Joined</strong>
+    </td>
+    <td>
+      <%= @user.created_at %>
+    </td>
+  </tr> 
 
 </table>
 
