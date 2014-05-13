@@ -33,6 +33,9 @@ About Section
 -------------
 These are standard HTML pages with static information about Noble's Landing, Bolivar, etc.
 
+The section also includes the beach house calendar.  To view the calendar, you must log into
+the google account that hosts it.
+
 ------------------
 Guest Logs Section
 ------------------

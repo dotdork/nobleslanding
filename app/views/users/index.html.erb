@@ -19,7 +19,11 @@
   <% @users.each do |user| %>
       <tr>
         <td>
-          <%= link_to(user.name,user) %>
+          <% if !user.noble? %>
+            <%= link_to(user.name,user) %>
+          <% else %>
+            <%= user.name %>
+          <% end %>
         </td>
         <td>
           <%= mail_to user.email %>
@@ -34,12 +38,14 @@
           <%= user.admin_s %>
         </td>
         <td>
-          <%= button_to "Edit", edita_user_path(user), :method => "get", class: "btn btn-xs btn-success" %>
-          <% if user.local? %>
-            <%= button_to "Password", edit_user_password_path(user), :method => "get", class: "btn btn-xs btn-warning" %>
-          <% end %>
-          <% if !user.admin? %>
-            <%= button_to "Delete", user_path(user), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+          <% if !user.noble? %> 
+            <%= button_to "Edit", edita_user_path(user), :method => "get", class: "btn btn-xs btn-success" %>
+            <% if user.local? %>
+              <%= button_to "Password", edit_user_password_path(user), :method => "get", class: "btn btn-xs btn-warning" %>
+            <% end %>
+            <% if !user.admin? %>
+              <%= button_to "Delete", user_path(user), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+            <% end %>
           <% end %>
         </td>
       </tr>

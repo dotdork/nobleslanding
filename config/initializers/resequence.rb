@@ -1,1 +1,1 @@
-ChecklistItem.resequence()
+# ChecklistItem.resequence()

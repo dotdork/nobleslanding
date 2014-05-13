@@ -91,9 +91,16 @@ class User < ActiveRecord::Base
     end
   end
   
+  def noble?
+    name == 'Nobles Landing'
+  end
+  
   def provider_s
-    if provider == 'google_oauth2'
+    case provider
+    when 'google_oauth2'
       'google'
+    when 'google_refresh'
+      'Do Not Edit'
     else
       provider
     end
