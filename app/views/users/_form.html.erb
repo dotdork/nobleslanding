@@ -15,7 +15,7 @@
     </p>
   <% end %>
   <p>
-    <%= f.label(:relation_id, "Relation?") %>
+    <%= f.label(:relation_id, "Category") %>
     <%= f.select(:relation_id,@relations.pluck(:name), prompt: "Pick one" ) %>
   </p>  
   <% if current_user_admin? %>

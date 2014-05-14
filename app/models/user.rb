@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     name == 'Nobles Landing'
   end
   
+  def manager?
+    relation_id = 'Manager'
+  end
+  
   def provider_s
     case provider
     when 'google_oauth2'

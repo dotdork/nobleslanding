@@ -91,7 +91,7 @@ private
  end
   
  def get_relations
-   if current_user_admin?
+   if current_user_admin? || current_user.manager?
      @relations = Relation.order(:name)
    else
      @relations = Relation.where(admin_only: false).order(:name)
