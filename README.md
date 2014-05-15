@@ -42,6 +42,7 @@ Guest Logs Section
 Dynamically view and create Guest Logs for your stay at Noble's Landing.
 
 Notable Features:
+- You must be logged in to the site to see guest logs.
 - You cannot create a Guest Log unless you are logged in to the site.
 - You cannot modify a Guest Log that wasn't created by your user (unless you are admin)
 

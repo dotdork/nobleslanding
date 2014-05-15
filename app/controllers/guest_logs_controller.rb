@@ -1,5 +1,5 @@
 class GuestLogsController < ApplicationController
-  before_action :require_signin, except: [:index, :show]
+  before_action :require_signin
 
   def index
     @guest_logs = GuestLog.all_desc.page(params[:page])
