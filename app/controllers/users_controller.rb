@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  helper_method :sort_column, :sort_direction
   before_action :require_signin
   before_action :require_correct_user, only: [:edit, :update, :destroy, :show, :password]
   before_action :require_admin, only: [:index]
@@ -8,12 +8,13 @@ class UsersController < ApplicationController
   def index
     case params[:cat]
     when 'Disabled'
-      @users = User.where(relation_id: 'Disabled').order(:name).page(params[:page])
+      @users = User.where(relation_id: 'Disabled').search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page])
     when 'Admins'
-      @users = User.where(admin: true).order(:name).page(params[:page])
+      @users = User.where(admin: true).order(:name).search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page])
     else
-      @users = User.order(:name).page(params[:page])
+      @users = User.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page])
     end
+    
   end
 
   def show
@@ -97,6 +98,15 @@ private
      @relations = Relation.where(admin_only: false).order(:name)
    end
  end
+ 
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end
 
 

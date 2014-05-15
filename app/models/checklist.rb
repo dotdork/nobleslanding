@@ -3,6 +3,6 @@ class Checklist < ActiveRecord::Base
   
   has_many :checklist_items, dependent: :destroy
 
-  self.per_page = 20
+  self.per_page = 15
   
 end

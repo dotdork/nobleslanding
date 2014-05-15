@@ -8,8 +8,16 @@ class User < ActiveRecord::Base
                     format: /\A\S+@\S+\z/,
                     uniqueness: { case_sensitive: false, :if => :local? }   
 
-  self.per_page = 20
-                          
+  self.per_page = 15
+          
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+                 
   # Authentication Methods   
   def self.authenticate_local(email, password)
     user = User.find_by(email: email, provider: 'local')

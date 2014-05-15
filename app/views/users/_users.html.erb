@@ -1,0 +1,50 @@
+<br/>
+  
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-striped table-condensed table-hover table-responsive">
+  <tr>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "email" %></th> 
+    <th><%= sortable :relation_id, "Category" %></th>
+    <th><%= sortable "provider" %></th> 
+    <th><%= sortable :admin, "Privilege" %></th>
+    <th>Actions</th>
+  </tr>
+  <% @users.each do |user| %>
+      <tr>
+        <td>
+          <% if !user.noble? %>
+            <%= link_to(user.name,user) %>
+          <% else %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= mail_to user.email %>
+        </td>
+        <td>
+          <%= user.relation_id || "Unknown" %>
+        </td>
+        <td>
+          <%= user.provider_s.capitalize %>
+        </td>
+        <td>
+          <%= user.admin_s %>
+        </td>
+        <td>
+          <% if !user.noble? %> 
+            <%= button_to "Edit", edita_user_path(user), :method => "get", class: "btn btn-xs btn-success" %>
+            <% if user.local? %>
+              <%= button_to "Password", edit_user_password_path(user), :method => "get", class: "btn btn-xs btn-warning" %>
+            <% end %>
+            <% if !user.admin? %>
+              <%= button_to "Delete", user_path(user), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
