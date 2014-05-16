@@ -10,8 +10,11 @@
     <div style="width: 250px;">
       <%= text_field_tag :search, params[:search],{ class: "form-control", placeholder: "Name Filter"} %>
     </div>
-    <div id="users"><%= render 'users' %></div>
   <% end %>
+  
+  <div id="users">
+    <%= render 'users' %>
+  </div>
 
 <p>
   <%= button_to "Add User Account", new_user_path(), :method => "get", class: "btn btn-primary" %>
