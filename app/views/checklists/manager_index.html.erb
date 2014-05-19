@@ -1,0 +1,11 @@
+<h2>Manger Lists</h2>
+
+<br/>
+
+<%= render 'list' %>
+
+<% if current_user_admin? %>
+  <p>
+    <%= button_to "Manage Lists", manager_manage_checklists_path, :method => "get", class: "btn btn-primary" %>
+  </p>
+<% end %>

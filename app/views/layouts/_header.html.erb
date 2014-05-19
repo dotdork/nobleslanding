@@ -38,7 +38,7 @@
             CHECKLISTS DROPDOWN
         ----------------------->
         <li class="dropdown">
-          <a href="<%= guest_logs_path %>" class="dropdown-toggle" data-toggle="dropdown">Rules & Lists<b class="caret"></b></a>
+          <a href="<%= checklists_path %>" class="dropdown-toggle" data-toggle="dropdown">House Lists<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="<%= checklists_path %>">All Lists</a></li>
             <% if current_user_admin? %>
@@ -53,16 +53,22 @@
           </ul>
         </li>
         <!---------------------
-            ADMIN DROPDOWN
+            MANAGER CHECKLISTS DROPDOWN
         ----------------------->
-        <% if current_user_admin? %>
+        <% if current_user_manager? %>
           <li class="dropdown">
-            <a href="<%= users_path %>" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+            <a href="<%= checklists_path %>" class="dropdown-toggle" data-toggle="dropdown">Manager Lists<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="<%= users_path %>">Manage User Accounts</a></li>
-              <li><a href="<%= relations_path %>">Manage User Categories</a></li>
-              <li><a href="<%=  manage_checklists_path %>">Manage Lists</a></li>
-
+              <li><a href="<%= manager_checklists_path %>">All Manager Lists</a></li>
+              <% if current_user_admin? %>
+                <li><a href="<%= new_manager_checklist_path %>">Add Manager List</a></li>
+              <% end %>
+              <% if manager_checklists %>
+                <li class="divider"></li>
+                <% manager_checklists.each do |cl| %>
+                  <li><%= link_to cl.name, cl %></li>
+                <% end %>
+              <% end %>
             </ul>
           </li>
         <% end %>
@@ -75,6 +81,13 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", user_path(current_user) %></li>
               <li><%= link_to "Sign Out", session_path, :method => "delete" %></li>
+              <% if current_user_admin? %>
+                <li class ="dropdown-header">Admin Tasks</li>
+                <li><a href="<%= users_path %>">User Accounts</a></li>
+                <li><a href="<%= relations_path %>">User Categories</a></li>
+                <li><a href="<%=  manage_checklists_path %>">House Lists</a></li>
+                <li><a href="<%=  manager_manage_checklists_path %>">Manager Lists</a></li>
+              <% end %>
             </ul>
           </li>
         <% else %>

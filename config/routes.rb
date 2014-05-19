@@ -20,6 +20,9 @@ NoblesLanding::Application.routes.draw do
   resources :relations
   
   get "checklists/manage" => "checklists#manage", as: "manage_checklists"
+  get "checklists/manager/index" => "checklists#manager_index", as: "manager_checklists"
+  get "checklists/manager/manage" => "checklists#manager_manage", as: "manager_manage_checklists"
+  get "checklists/manager/new" => "checklists#manager_new", as: "new_manager_checklist"
   resources :checklists do
     resources :checklist_items
     get "checklist_items/:id/moveup" => "checklist_items#moveup", as: "moveup_checklist_item"

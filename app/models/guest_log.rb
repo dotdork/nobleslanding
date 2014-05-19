@@ -10,11 +10,11 @@ class GuestLog < ActiveRecord::Base
   self.per_page = 15
   
   def self.all_desc
-    return GuestLog.order('in_at DESC')
+    return GuestLog.order('out_at DESC')
   end
   
   def self.all_asc
-    return GuestLog.order('in_at ASC')
+    return GuestLog.order('out_at ASC')
   end
   
   private

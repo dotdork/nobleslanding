@@ -23,6 +23,11 @@
         <% end %>
         <%= item_value.html_safe %>
       </td>
+      <!--
+          <td>
+            <%= item.seq %>
+           </td>
+      -->
       <td>
         <%= button_to "Edit", edit_checklist_checklist_item_path(@checklist,item), :method => "get", class: "btn btn-xs btn-success" %>
         <%= button_to "Delete", checklist_checklist_item_path(@checklist,item), :method => "delete", data: {confirm: 'Are you sure?'},class: "btn btn-xs btn-danger" %>

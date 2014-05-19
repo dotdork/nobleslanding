@@ -2,27 +2,40 @@ class ChecklistsController < ApplicationController
   
   before_action :require_signin, except: [:index, :show]
   before_action :require_admin, except: [:index, :show]
+  before_action :require_manager, only: [:manager_index]
     
   def index
     if current_user
-      @checklists = Checklist.order(:name).page(params[:page])
+      @checklists = Checklist.where(manager_only: false).order(:name).page(params[:page])
     else
-      @checklists = Checklist.where(require_login: false).order(:name).page(params[:page])
+      @checklists = Checklist.where(require_login: false, manager_only: false).order(:name).page(params[:page])
     end
   end
 
   def manage
     if current_user
-      @checklists = Checklist.order(:name).page(params[:page])
+      @checklists = Checklist.where(manager_only: false).order(:name).page(params[:page])
     else
-      @checklists = Checklist.where(require_login: false).order(:name).page(params[:page])
+      @checklists = Checklist.where(require_login: false, manager_only: false).order(:name).page(params[:page])
     end
   end
-    
+
+  def manager_index
+    @checklists = Checklist.where(manager_only: true).order(:name).page(params[:page])
+  end
+  
+  def manager_manage
+    @checklists = Checklist.where(manager_only: true).order(:name).page(params[:page])
+  end
+
   def show
     @checklist = Checklist.find(params[:id])
     if @checklist.require_login
       require_signin
+    end
+    
+    if @checklist.manager_only
+      require_manager
     end
     @items = @checklist.checklist_items.order(:seq)    
   end
@@ -45,7 +58,12 @@ class ChecklistsController < ApplicationController
   def new
     @checklist = Checklist.new
   end
-  
+ 
+  def manager_new
+    @checklist = Checklist.new
+    @checklist.manager_only = true
+    @checklist.require_login = true
+  end 
   
   def create 
     @checklist = Checklist.new(checklist_params)
@@ -65,7 +83,7 @@ class ChecklistsController < ApplicationController
 private 
   def checklist_params
     params.require(:checklist).
-      permit(:name, :description, :checked, :require_login)
+      permit(:name, :description, :checked, :require_login, :manager_only)
   end
 
   

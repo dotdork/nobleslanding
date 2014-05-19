@@ -47,7 +47,7 @@ Notable Features:
 - You cannot modify a Guest Log that wasn't created by your user (unless you are admin)
 
 ----------------------
-Rules & Lists Section
+House Lists Section
 ----------------------
 A collection of checklists and rules for Noble's Landing.  This is dynamic content
 that is created and maintained by Admin users of the site.
@@ -56,19 +56,39 @@ Notable Features:
 - Lists are optionally viewable by those logged in or not logged in (set by Admins)
 - Lists can be checklists (with checkboxes) or not (another option)
 - Lists can easily be created, edited, and maintained by site Admins
-- The Rules & Lists header dropdown menu will dynamically show links to lists that
+- The House Lists header dropdown menu will dynamically show links to lists that
 are available to the person viewing the page (this will vary based on if you are 
 logged in or not)
 
---------------
-Admin Section
---------------
-The Admin header dropdown will only appear for Admin priviledged users.
+----------------------
+Manager Lists Section
+----------------------
+A collection of checklists and rules for the managers of Noble's Landing.  This is dynamic content
+that is created and maintained by Admin users of the site.
+
+Only Users in the category managers will see this dropdown menu.
 
 Notable Features:
-- Manage User Accounts:  create/edit/change passwords/delete options for all users
-- Manage User Categories:  Add/edit/remove categories for users
-- Manage Lists:  Create/Edit/Maintain Lists to add to "Rules & Lists"
+- Lists are only viewable by Managers (checkbox option when creating/editing list)
+- Lists can be checklists (with checkboxes) or not (another option)
+- Lists can easily be created, edited, and maintained by site Admins
+- The Manager Lists header dropdown menu will dynamically show links to lists that
+are available
+
+--------------
+User Section
+--------------
+User name will be displayed with a dropdown list of actions
+
+For everyone:
+- Profile link to view/edit profile info
+- Sign out
+
+If Admin, Admin Tasks:
+- User Accounts:  create/edit/change passwords/delete options for all users
+- User Categories:  Add/edit/remove categories for users
+- House Lists:  Create/Edit/Maintain Lists to add to "House Lists"
+- Manager Lists: Create/Edit/Maintain Lists to add to "Manager Lists"
 
 --------------------
 Thanks and Props

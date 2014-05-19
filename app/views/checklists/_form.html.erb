@@ -13,7 +13,11 @@
   <p>
     <%= f.label(:require_login, "Require Login to View?") %><br/>
     <%= f.check_box(:require_login) %>
-  </p>  
+  </p>
+  <p>
+    <%= f.label(:manager_only, "Require Manager to View?") %><br/>
+    <%= f.check_box(:manager_only) %>
+  </p> 
   <div style="float: left; width: auto; padding-right: 5px">
     <% if @checklist.new_record? %>
       <%= f.submit('Create List',class: "btn btn-primary") %>

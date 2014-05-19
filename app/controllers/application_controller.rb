@@ -16,11 +16,17 @@ class ApplicationController < ActionController::Base
     def require_noble
       session[:intended_url] = nil
       unless session[:noble_id]
-        # need to check for expiry here and optionally refresh it
         session[:intended_url] = request.url
         redirect_to "/auth/google_refresh"
       end
     end    
+
+    def require_manager
+      unless current_user_manager?
+        redirect_to root_path, alert: "Unauthorized Access!"
+      end
+    end    
+    
     
     def current_user
       if session[:user_id]
@@ -36,13 +42,20 @@ class ApplicationController < ActionController::Base
     
     def current_checklists
       if current_user
-        @checklists = Checklist.order(:name)
+        Checklist.where(manager_only: false).order(:name)
       else
-        @checklists = Checklist.where(require_login: false).order(:name)
+        Checklist.where(require_login: false, manager_only: false).order(:name)
       end
     end
     helper_method :current_checklists
     
+    def manager_checklists
+      if current_user_manager?
+        Checklist.where(manager_only: true).order(:name)
+      end
+    end
+    helper_method :manager_checklists
+  
     def require_correct_user
       # also allow admin
       unless  current_user_admin? || current_user?(User.find(params[:id]))
@@ -65,4 +78,10 @@ class ApplicationController < ActionController::Base
       current_user && current_user.admin?
     end
     helper_method :current_user_admin?
+    
+    def current_user_manager?  
+      current_user && current_user.relation_id == "Manager"
+    end
+    helper_method :current_user_manager?    
+    
 end

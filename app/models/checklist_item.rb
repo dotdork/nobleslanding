@@ -2,7 +2,6 @@ class ChecklistItem < ActiveRecord::Base
   before_create :set_sequence
   
   validates :name, presence: true
-  validates :seq, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   
   belongs_to :checklist
   
@@ -57,6 +56,7 @@ class ChecklistItem < ActiveRecord::Base
   private
   
       def set_sequence
+        puts "Setting Sequence ---------------------------------------------------------------------------------------"
         if last_seq = ChecklistItem.where(checklist_id: self.checklist_id).order(:seq).last()
           self.seq = last_seq.seq + 1
         else

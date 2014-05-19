@@ -63,7 +63,7 @@ private
   end
   
   def require_same_name(user)
-    unless  current_user == user 
+    unless  current_user == user || current_user_admin?
       redirect_to root_path, alert: "Unauthorized access!"
     end
   end

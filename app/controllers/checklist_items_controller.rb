@@ -51,7 +51,7 @@ class ChecklistItemsController < ApplicationController
   
   def create 
     @checklist = Checklist.find(params[:checklist_id])
-    @checklist_item = @checklist.checklist_items.new(checklist_item_params)  
+    @checklist_item = @checklist.checklist_items.new(checklist_item_params)
     if @checklist_item.save()
       redirect_to edit_checklist_path(@checklist), notice: "Checklist Item created successfully"
     else

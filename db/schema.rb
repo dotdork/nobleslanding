@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508184640) do
+ActiveRecord::Schema.define(version: 20140519141904) do
 
   create_table "checklist_items", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140508184640) do
     t.datetime "updated_at"
     t.boolean  "checked",       default: true
     t.boolean  "require_login", default: false
+    t.boolean  "manager_only",  default: false
   end
 
   create_table "guest_logs", force: true do |t|
