@@ -82,7 +82,8 @@
               <li><%= link_to "Profile", user_path(current_user) %></li>
               <li><%= link_to "Sign Out", session_path, :method => "delete" %></li>
               <% if current_user_admin? %>
-                <li class ="dropdown-header">Admin Tasks</li>
+                <li class="divider"></li>
+                <li class ="dropdown-header">ADMIN TASKS</li>
                 <li><a href="<%= users_path %>">User Accounts</a></li>
                 <li><a href="<%= relations_path %>">User Categories</a></li>
                 <li><a href="<%=  manage_checklists_path %>">House Lists</a></li>
