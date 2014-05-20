@@ -21,7 +21,7 @@
         <% if !item.description.blank? %>
           <% item_value += ": #{item.description}" %>   
         <% end %>
-        <%= item_value.html_safe %>
+        <%= simple_format(item_value.html_safe) %>
       </td>
       <!--
           <td>

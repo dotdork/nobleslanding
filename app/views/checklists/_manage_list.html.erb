@@ -12,7 +12,7 @@
           <%= link_to(checklist.name,checklist) %>
         </td>
         <td>
-          <%= checklist.description %>
+          <%= simple_format(checklist.description) %>
         </td>
         <td>
           <%= checklist.require_login.to_s.capitalize %>

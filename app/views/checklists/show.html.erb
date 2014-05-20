@@ -1,7 +1,7 @@
 <h2><%= @checklist.name %></h2>
 
 <h4>
-  <%= @checklist.description %>
+  <%= simple_format(@checklist.description) %>
 </h4>
 <br/>
 <% if @items
@@ -21,7 +21,7 @@ end %>
         <% if !item.description.blank? %>
           <% item_value += ": #{item.description}" %>   
         <% end %>
-        <%= item_value.html_safe %>
+        <%= simple_format(item_value.html_safe) %>
       </td>
     </tr>
 <% end %>
