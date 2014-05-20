@@ -1,12 +1,24 @@
 <h2>Guest Logs <small>(Average Rating: <%= @average %>)</small></h2>
 
 <br/>
-
+<% curyear = "0" %>
 <table class="table table-striped table-condensed table-hover table-responsive" style="width: 90%">
   <% @guest_logs.each do |log| %>
+      <% if curyear != log.out_at.to_s(:year) %>
+        <% curyear = log.out_at.to_s(:year) %>
+        <th colspan="2" style="text-align: center"><strong><%= curyear %></strong></th>
+      <% end %>
       <tr>
-        <td style="width: 150px; valign="top";>
-          <%= link_to("#{log.in_at.to_s(:from)} - #{log.out_at.to_s(:to)}",log) %>
+        <td style="width: 125px; valign="top";>
+          <% if log.in_at.to_s(:from) == log.out_at.to_s(:to) %>
+            <%= link_to("#{log.out_at.to_s(:to)}",log) %>
+          <% else %>
+            <% if log.in_at.to_s(:month) == log.out_at.to_s(:month) %>
+              <%= link_to("#{log.in_at.to_s(:from)} - #{log.out_at.to_s(:day)}",log) %>
+            <% else %>
+              <%= link_to("#{log.in_at.to_s(:from)} - #{log.out_at.to_s(:to)}",log) %>
+            <% end %>
+          <% end %>
         </td>
     	  <td>
     	    <strong><%= log.name %> says...</strong> <i>&ldquo;<%= log.log %>&rdquo;</i>
